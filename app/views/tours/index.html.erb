@@ -1,0 +1,4 @@
+<% @tours.each do |tour| %>
+	<h2><%= link_to tour.name, tour_path(tour) %></h2>
+<%end%>
+<%= link_to "Add tour",new_tour_path, class: "btn btn-primary" %>

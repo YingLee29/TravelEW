@@ -1,0 +1,13 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<%= simple_form_for @tour do |f| %>
+			<%= f.input :name, label: "Tour name", class: 'form-control' %>
+			<%= f.input :destination, class: 'form-control' %>
+			<%= f.input :tourday, class: 'form-control' %>
+			<%= f.input :price, class: 'form-control' %>
+			<%= f.input :starday, class: 'form-control' %>
+			<%= f.input :rated, class: 'form-control' %>
+			<%= f.button :submit, class: "btn btn-primary"%>
+		<% end %>	
+	</div>
+</div>
