@@ -2,7 +2,8 @@ class ToursController < ApplicationController
 	before_action :find_tour, only: [:show, :edit, :update, :destroy]
 	def index
 		# @q = Tour.ransack(params[:q])
-  # 	@tours = @q.result(distinct: true)
+  # 	@tours = @q.result
+
 		if params[:category].blank?
 			@tours = Tour.all.order("created_at DESC")
 		else
@@ -10,11 +11,6 @@ class ToursController < ApplicationController
 			@tours = Tour.where(:category_id => @category_id).order("created_at DESC")
 		end
 	end
-
-	def search_params
-    return nil unless params[:tour_list]
-    params.require(:tour_list).permit :name_or_price
-  end
 
 	def show
 		@tour = Tour.find(params[:id])
