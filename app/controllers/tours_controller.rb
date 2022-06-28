@@ -1,8 +1,6 @@
 class ToursController < ApplicationController
 	before_action :find_tour, only: [:show, :edit, :update, :destroy]
 	def index
-		# @q = Tour.ransack(params[:q])
-  # 	@tours = @q.result
 
 		if params[:category].blank?
 			@tours = Tour.all.order("created_at DESC")
@@ -10,18 +8,27 @@ class ToursController < ApplicationController
 			@category_id = Category.find_by(name: params[:category]).id
 			@tours = Tour.where(:category_id => @category_id).order("created_at DESC")
 		end
+		@q = Tour.ransack(params[:q])
+  	@tours = @q.result
 	end
+
 
 	def show
 		@tour = Tour.find(params[:id])
+		@q = Tour.ransack(params[:q])
+  	@tours = @q.result
 	end
 
 	def new
+		@q = Tour.ransack(params[:q])
+  	@tours = @q.result
 		@tour = Tour.new
 		@categories = Category.all.map{ |c| [c.name, c.id]}
 	end
 
 	def create
+		@q = Tour.ransack(params[:q])
+  	@tours = @q.result
 		@tour = Tour.new(tour_params)
 		@tour.category_id = params[:category_id]
 		if @tour.save
@@ -32,10 +39,14 @@ class ToursController < ApplicationController
 	end
 
 	def edit
+		@q = Tour.ransack(params[:q])
+  	@tours = @q.result
 		@categories = Category.all.map{ |c| [c.name, c.id]}
 	end
 
 	def update
+		@q = Tour.ransack(params[:q])
+  	@tours = @q.result
 		@categories = Category.all.map{ |c| [c.name, c.id]}
 		if @tour.update(tour_params)
 			redirect_to tour_path(@tour)	
@@ -45,6 +56,8 @@ class ToursController < ApplicationController
 	end
 
 	def destroy
+		@q = Tour.ransack(params[:q])
+  	@tours = @q.result
 		@tour.destroy
 		redirect_to root_path
 	end
@@ -54,7 +67,7 @@ class ToursController < ApplicationController
 		def tour_params
 			params.require(:tour).permit(:name, :destination, :tourday, :price, :starday, :rated, :category_id, :tour_img)
 		end
-		def find_book
+		def find_tour
 			@tour = Tour.find(params[:id])
 		end
 end
