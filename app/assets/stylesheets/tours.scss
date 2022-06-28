@@ -1,3 +1,20 @@
-// Place all the styles related to the Tours controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.input-group {
+	justify-content: flex-end;
+	margin-right: 50px;
+	.form-outline {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
+.navbar-brand {
+	margin-left: 80px;
+	font-style: oblique;
+	color: #0000;
+}
+
+.nav-item {
+	margin-left: 20px;
+	font-style: normal;
+	color: #0000;
+}

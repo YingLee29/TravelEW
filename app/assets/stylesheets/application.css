@@ -15,3 +15,25 @@
  */
 @import "bootstrap-sprocket";
 @import "bootstrap";
+
+.tour {
+    height: 190px;
+    width: 250px;
+}
+.tour-show {
+    height: 250px;
+    width: 400px;
+}
+.backgroud {
+  background-image: url("https://c.wallhere.com/photos/1a/f8/1920x1200_px_beaches_Fiji_Hotels_huts_Islands_ocean_Palm-2063893.jpg!d");
+  background-size: cover;
+}
+
+.texts {
+  font-size:25px;
+  color: #000000;
+}
+.color-text {
+  font-size: 15;
+  color: #D80000 ;
+}

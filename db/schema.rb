@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_23_151651) do
+ActiveRecord::Schema.define(version: 2022_06_26_142325) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "create_tours", force: :cascade do |t|
     t.string "name"
@@ -31,6 +37,11 @@ ActiveRecord::Schema.define(version: 2022_06_23_151651) do
     t.integer "rated"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "category_id"
+    t.string "tour_img_file_name"
+    t.integer "tour_img_file_size"
+    t.string "tour_img_content_type"
+    t.datetime "tour_img_updated_at"
   end
 
   create_table "users", force: :cascade do |t|
