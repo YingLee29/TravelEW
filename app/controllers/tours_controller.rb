@@ -1,4 +1,5 @@
 class ToursController < ApplicationController
+
 	before_action :find_tour, only: [:show, :edit, :update, :destroy]
 	def index
 
@@ -60,6 +61,11 @@ class ToursController < ApplicationController
   	@tours = @q.result
 		@tour.destroy
 		redirect_to root_path
+	end
+
+	def booktours
+		@q = Tour.ransack(params[:q])
+		@tour =  Tour.find(params[:id])
 	end
 
 	private

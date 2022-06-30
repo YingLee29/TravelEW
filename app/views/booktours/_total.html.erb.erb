@@ -1,0 +1,1 @@
+<h3>Booktoured List -- Total amount: <%= Booktour.where(user_id: current_user.id).sum(:totalprice) %>VND</h3>

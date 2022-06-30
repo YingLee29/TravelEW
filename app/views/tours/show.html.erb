@@ -10,3 +10,4 @@
 
 <%= link_to "Edit",edit_tour_path, class: "btn btn-primary" %>
 <%= link_to "Delete",tour_path(@tour), method: :delete, data: {confirm: "bạn muốn xóa tour này không?"}, class: "btn btn-primary" %>
+<%= link_to "Book tour",booktours_tour_path, method: :post, class: "btn btn-primary" %>

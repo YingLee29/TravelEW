@@ -1,0 +1,26 @@
+
+<h4>Logging as: <%= current_user.email %> -- 
+<%= link_to "Sign Out", destroy_user_session_path, method: :delete %></h4>
+
+<% @tours.each do |tour| %>
+    <%= tour.id %> - <%= tour.title %> - <%= tour.price %>￥
+    <%= form_for @order, remote: true do |f| %>
+    	<%= f.hidden_field :tour_id, :value => tour.id %>
+    	<%= f.hidden_field :user_id, :value => current_user.id %>
+    	<%= f.number_field :nuofgu, :value => 1, :min => 1 %>
+    	<%= f.submit "Book-tour" %>
+	<% end %>
+<% end %>
+
+<hr>
+<div class="total-amount">
+    <%= render "booktours/total" %>
+</div>
+<div class="reception">
+    <% @booktours.each do |booktour| %>
+            <%= render "booktours/booktour", booktour: booktour %>
+    <% end %>
+</div>
+
+
+
