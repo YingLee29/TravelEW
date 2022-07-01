@@ -1,26 +1,18 @@
 
-<h4>Logging as: <%= current_user.email %> -- 
-<%= link_to "Sign Out", destroy_user_session_path, method: :delete %></h4>
-
-<% @tours.each do |tour| %>
-    <%= tour.id %> - <%= tour.title %> - <%= tour.price %>￥
-    <%= form_for @order, remote: true do |f| %>
-    	<%= f.hidden_field :tour_id, :value => tour.id %>
-    	<%= f.hidden_field :user_id, :value => current_user.id %>
-    	<%= f.number_field :nuofgu, :value => 1, :min => 1 %>
-    	<%= f.submit "Book-tour" %>
-	<% end %>
-<% end %>
-
-<hr>
-<div class="total-amount">
-    <%= render "booktours/total" %>
+<div class="container mx-auto mt-4">
+  <div class="row">
+    <div class="col-md-4">
+			<% @booktours.each do |booktour| %>
+				<h2><%= booktour.tour.name %></h2>
+				<h6>Điểm đến: <%= booktour.tour.destination%></h6>
+				<h6>Thời gian: <%= booktour.tour.tourday %> ngày</h6>
+				<h6>Khởi hành vào ngày: <%= booktour.tour.starday.strftime("%d/%m/%Y") %></h6>
+				<h6>Số thành viên: <%= booktour.nuofgu %> người </h6>
+				<h6>Tổng tiền phải thanh toán: <%= number_to_currency(booktour.totalprice) %> VND </h6>
+				<h6>Ngày đặt tour <%= booktour.datebook.strftime("%d/%m/%Y") %> </h6>
+				
+				<%= link_to "Hủy tour",booktour_path(booktour),method: :delete, class: "btn btn-primary" %>
+			<% end %>
+		</div>
+	</div>
 </div>
-<div class="reception">
-    <% @booktours.each do |booktour| %>
-            <%= render "booktours/booktour", booktour: booktour %>
-    <% end %>
-</div>
-
-
-

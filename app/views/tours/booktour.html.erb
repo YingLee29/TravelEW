@@ -1,0 +1,38 @@
+<h1>Booktour</h1>
+<h2><%= @tour.name %></h2>
+<h4>Loại tour: <%= @tour.category.name%></h4>
+<h4>Điểm đến: <%= @tour.destination%></h4>
+<h4>Thời gian: <%= @tour.tourday %> ngày</h4>
+<h4>Giá tour: 
+	<span id='price' data-price='<%= @tour.price %>'>
+		<%= number_to_currency(@tour.price) %>
+	</span>
+	VND/1 người
+</h4>
+<h4>Khởi hành: <%= @tour.starday.strftime("%d/%m/%Y") %></h4>
+
+<%= form_for :booktour, url: book_new_tour_path(@tour.id), method: :get do |f| %>
+	<div class="form-group col-md-3 col-md-offset-3">
+		<%= f.label :số_lượng_thành_viên %>
+		<%= f.number_field :nuofgu, value: 0, min:1, class: 'form-control' %>
+		
+	</div>
+	<div class="form-group col-md-3 col-md-offset-3">
+		<%= f.label :tổng_giá_tiền %>
+		<%= f.text_field :totalprice, value: 0, class: 'form-control', disabled: true %>
+	</div>
+	<%= link_to "Back",tours_path, class: "btn btn-primary" %>
+	<%= f.submit "Book Tour", class: 'btn btn-primary' %>
+<% end %>
+
+<script type="text/javascript">
+		let price = parseInt($('#price').data('price'));
+		let number = parseInt($('#booktour_nuofgu').val());
+		let total = 0;
+
+		$('#booktour_nuofgu').change(function(){
+		  total = this.value * price;
+		  $('#booktour_totalprice').val(total);
+		});
+
+</script>

@@ -1,5 +1,4 @@
 <h1 class="current-category"><%= params[:category] %></h1>
-
 <% if @tours.count == 0 %>
 		<h2>Hiện tại loại này không có Tour nào</h2>
 <% else %>
@@ -9,8 +8,8 @@
 				<a href="tours/tour.id"></a>
 				<%= image_tag tour.tour_img.url(:tour_index), class: "tour" %>
 				<h3 class="" ><%= link_to tour.name, tour_path(tour), class:"texts" %></h3>
-				<h5 class="color-text"><%= link_to tour.price, tour_path(tour), class:"texts"%> VND</h5>
+				<h5 class="color-text"><%= link_to number_to_currency(tour.price), tour_path(tour), class:"texts"%> VND</h5>
 			</div>
-		<%end%> 
+		<%end%>
 	</div>
 <% end %>

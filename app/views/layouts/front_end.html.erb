@@ -7,10 +7,11 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
   </head>
 
   <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <nav class="navbar headerfix navbar-expand-lg navbar-light bg-light justify-content-between">
   <%= link_to "Travel", root_path, class: "navbar-brand" %>
     
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,11 +30,17 @@
       
     </div>
     <ul class="navbar-nav navbar-right">
-       <% if current_user %>
-      <li>
-        <%= link_to "Addtour",new_tour_path, class: "nav-link" %>
-      </li>
-      <% end%>
+      <% if current_user %>
+        <% if current_user.role == 0 %>
+          <li>
+            <%= link_to "Addtour",new_tour_path, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to "Mybooking",booktours_path, class: "nav-link" %>
+          </li>
+        <% end -%>
+      <% end %>
       <li class="nav-item">
         <%= link_to "Home", tours_path, class: "nav-link" %>
       </li>

@@ -4,10 +4,13 @@
 <h4>Loại tour: <%= @tour.category.name%></h4>
 <h4>Điểm đến: <%= @tour.destination%></h4>
 <h4>Thời gian: <%= @tour.tourday %> ngày</h4>
-<h4>Giá tour: <%= @tour.price %>VND</h4>
-<h4>Khởi hành: <%= @tour.starday %></h4>
+<h4>Giá tour: <%=number_to_currency(@tour.price) %>VND/1 người</h4>
+<h4>Khởi hành: <%= @tour.starday.strftime("%d/%m/%Y") %></h4>
 <%= link_to "Back",tours_path, class: "btn btn-primary" %>
-
-<%= link_to "Edit",edit_tour_path, class: "btn btn-primary" %>
-<%= link_to "Delete",tour_path(@tour), method: :delete, data: {confirm: "bạn muốn xóa tour này không?"}, class: "btn btn-primary" %>
-<%= link_to "Book tour",booktours_tour_path, method: :post, class: "btn btn-primary" %>
+<% if current_user %>
+	<% if current_user.role.zero? %>
+	<%= link_to "Edit",edit_tour_path, class: "btn btn-primary" %>
+	<%= link_to "Delete",tour_path(@tour), method: :delete, class: "btn btn-primary" %>
+	<% end -%>
+<% end %>
+<%= link_to "Book tour", booktour_tour_path(@tour.id), class: "btn btn-primary"%>

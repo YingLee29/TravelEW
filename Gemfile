@@ -5,7 +5,7 @@ ruby '3.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.6'
-gem 'bootstrap-sass', '~> 3.4.1'
+gem 'bootstrap', '~> 5.1.3'
 gem 'sassc-rails', '>= 2.1.0'
 gem 'ransack'
 gem 'kt-paperclip', '~> 7.1', '>= 7.1.1'

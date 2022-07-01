@@ -13,7 +13,6 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap-sprocket";
 @import "bootstrap";
 
 .tour {
@@ -36,4 +35,9 @@
 .color-text {
   font-size: 15;
   color: #D80000 ;
+}
+.headerfix {
+  position: fixed !important;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
 }
