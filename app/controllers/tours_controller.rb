@@ -3,7 +3,6 @@ class ToursController < ApplicationController
 	before_action :find_tour, only: [:show, :edit, :update, :destroy]
 
 	def index
-
 		if params[:category].blank?
 			@tours = Tour.all.order("created_at DESC")
 		else

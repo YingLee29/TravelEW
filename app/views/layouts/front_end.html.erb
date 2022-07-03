@@ -17,8 +17,8 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <div class="dropdown nav-link"  >
+  <div class="collapse navbar-collapse nav-link" id="navbarNavDropdown">
+<!--     <div class="dropdown nav-link"  >
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories <span class="caret"></span></a>
       <ul class="dropdown-menu" role="menu">
           <% Category.all.each  do |category| %>
@@ -28,8 +28,8 @@
           <% end %>
       </ul>
       
-    </div>
-    <ul class="navbar-nav navbar-right">
+    </div> -->
+    <ul class="navbar-nav navbar-right  ">
       <% if current_user %>
         <% if current_user.role == 0 %>
           <li>
@@ -48,10 +48,9 @@
       <% if current_user %>
         <li class="nav-item">
           <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
-        </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Account
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            Accout
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <%= link_to "profile", '#', class: "dropdown-item" %>
