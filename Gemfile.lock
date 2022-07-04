@@ -94,6 +94,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    digest (3.1.0)
     erubi (1.10.0)
     execjs (2.8.1)
     ffi (1.15.5)
@@ -127,6 +128,20 @@ GEM
     mini_mime (1.1.2)
     minitest (5.16.1)
     msgpack (1.5.2)
+    net-imap (0.2.3)
+      digest
+      net-protocol
+      strscan
+    net-pop (0.1.1)
+      digest
+      net-protocol
+      timeout
+    net-protocol (0.1.3)
+      timeout
+    net-smtp (0.3.1)
+      digest
+      net-protocol
+      timeout
     nio4r (2.5.8)
     nokogiri (1.13.6-x86_64-linux)
       racc (~> 1.4)
@@ -215,10 +230,12 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.4.4)
+    strscan (3.0.3)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thor (1.2.1)
     tilt (2.0.10)
+    timeout (0.3.0)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -260,6 +277,9 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   kt-paperclip (~> 7.1, >= 7.1.1)
   listen (~> 3.3)
+  net-imap
+  net-pop
+  net-smtp
   pg
   pry (~> 0.13.1)
   puma (~> 5.0)
