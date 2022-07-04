@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   get 'users/show'
   get 'users/new'
   get 'users/new'
+  get 'users/index'
+  delete 'users/:id/destroy', to: 'users#destroy', as: 'delete_user'
+  # resources :users
   root "static_pages#home"
   get 'booktours/show'
   #post 'booktours/new'
@@ -20,6 +23,7 @@ Rails.application.routes.draw do
         sessions: 'users/sessions',
         registrations: 'users/registrations',
         passwords: 'users/passwords',
-        users: '/users/show'     }
+        users: '/users/show'
+      } 
 end
 # resources :booktours, only: [:new, :show, :destroy, :update]

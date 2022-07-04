@@ -53,7 +53,11 @@
             Accout
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <%= link_to "profile", '#', class: "dropdown-item" %>
+            <% if current_user.role == 0 %>
+                <%= link_to "user", users_index_path, class: "dropdown-item" %>
+            <% else %>
+            <%= link_to "profile", users_show_path, class: "dropdown-item" %>
+            <% end %>
             <%= link_to "setting", '#', class: "dropdown-item" %>
           </div>
         </li>
