@@ -9,7 +9,7 @@ class ToursController < ApplicationController
 			@category_id = Category.find_by(name: params[:category]).id
 			@tours = Tour.where(:category_id => @category_id).order("created_at DESC")
 		end
-		@q = Tour.ransack(params[:q])
+			@q = Tour.ransack(params[:q])
   		@tours = @q.result
 	end
 
