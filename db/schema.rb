@@ -12,12 +12,15 @@
 
 ActiveRecord::Schema.define(version: 2022_07_01_074449) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "booktours", force: :cascade do |t|
     t.datetime "datebook"
     t.integer "nuofgu"
     t.integer "totalprice"
-    t.integer "tour_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "tour_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["tour_id"], name: "index_booktours_on_tour_id"
@@ -26,16 +29,6 @@ ActiveRecord::Schema.define(version: 2022_07_01_074449) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "create_tours", force: :cascade do |t|
-    t.string "name"
-    t.text "destination"
-    t.integer "tourday"
-    t.integer "price"
-    t.datetime "startday"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

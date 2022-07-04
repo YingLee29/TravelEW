@@ -9,7 +9,9 @@ gem 'bootstrap', '~> 5.1.3'
 gem 'sassc-rails', '>= 2.1.0'
 gem 'ransack'
 gem 'kt-paperclip', '~> 7.1', '>= 7.1.1'
-# Use sqlite3 as the database for Active Record
+gem 'pg'
+# gem 'sqlite3'
+# Use sqlite3 as the database for Active Recordpf
 gem 'simple_form', '~> 5.1'
 gem 'devise', '~> 4.8', '>= 4.8.1'
 # Use Puma as the app server
@@ -39,11 +41,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'sqlite3', '~> 1.4'
 
-end
-group :production do
-  gem 'pg'
 end
 
 group :development do
