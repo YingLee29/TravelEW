@@ -10,6 +10,7 @@ gem 'sassc-rails', '>= 2.1.0'
 gem 'ransack'
 gem 'kt-paperclip', '~> 7.1', '>= 7.1.1'
 gem 'pg'
+gem "rake", "~> 13.0"
 # gem 'sqlite3'
 # Use sqlite3 as the database for Active Recordpf
 gem 'simple_form', '~> 5.1'
