@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   private
 
   def check_admin
-    if !current_user.role.zero?
+    if current_user.user?
       redirect_to root_path
     end
   end

@@ -2,17 +2,26 @@
 <div class="container mx-auto mt-4">
   <div class="row">
     <div class="col-md-4">
-    	<div class="top"> 
-				<% @booktours.each do |booktour| %>
-					<h2><%= booktour.tour.name %></h2>
-					<h6>Điểm đến: <%= booktour.tour.destination%></h6>
-					<h6>Thời gian: <%= booktour.tour.tourday %> ngày</h6>
-					<h6>Khởi hành vào ngày: <%= booktour.tour.starday.strftime("%d/%m/%Y") %></h6>
-					<h6>Số thành viên: <%= booktour.nuofgu %> người </h6>
-					<h6>Tổng tiền phải thanh toán: <%= number_to_currency(booktour.totalprice) %> VND </h6>
-					<h6>Ngày đặt tour <%= booktour.datebook.strftime("%d/%m/%Y") %> </h6>
-					
-					<%= link_to "Canel tour",booktour_path(booktour),method: :delete, class: "btn btn-primary" %>
+    	<div class="top1">
+    			<% if current_user.admin? %>
+    				<% @booktours.each do |booktour| %>
+						<h5>Tên tour: <%= booktour.tour.name %></h5>
+						<h5>Khách hàng: <%= booktour.user.name%></h5>
+						<%= link_to booktour.status, '#' %>
+						<% end %>
+    			<% else %>
+						<% @booktours.each do |booktour| %>
+						<h2><%= booktour.tour.name %></h2>
+						<h6>Điểm đến: <%= booktour.tour.destination%></h6>
+						<h6>Thời gian: <%= booktour.tour.tourday %> ngày</h6>
+						<h6>Khởi hành vào ngày: <%= booktour.tour.starday.strftime("%d/%m/%Y") %></h6>
+						<h6>Số thành viên: <%= booktour.nuofgu %> người </h6>
+						<h6>Tổng tiền phải thanh toán: <%= number_to_currency(booktour.totalprice) %> VND </h6>
+						<h6>Ngày đặt tour <%= booktour.datebook.strftime("%d/%m/%Y") %> </h6>
+						
+						<%= link_to "Canel tour",booktour_path(booktour),method: :delete, class: "btn btn-primary" %>
+						<%= link_to booktour.status, '#' %>
+					<% end %>
 				<% end %>
 			</div>
 		</div>

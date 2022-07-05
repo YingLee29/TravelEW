@@ -1,7 +1,7 @@
 class BooktoursController < ApplicationController
   layout 'front_end'
   def index
-    @booktours = current_user.booktours
+    @booktours = current_user.admin? ? Booktour.all : current_user.booktours
   end
 
   def show
@@ -27,6 +27,9 @@ class BooktoursController < ApplicationController
     @booktour.tour_id = params[:id]
     @booktour.totalprice = tour * @booktour.nuofgu
     redirect_to booktours_path if @booktour.save
+  end
+  def update
+        
   end
   def destroy
     @booktour = Booktour.find(params[:id])

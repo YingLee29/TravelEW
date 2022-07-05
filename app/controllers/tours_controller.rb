@@ -13,7 +13,6 @@ class ToursController < ApplicationController
   		@tours = @q.result
 	end
 
-
 	def show
 		@tour = Tour.find(params[:id])
 		@q = Tour.ransack(params[:q])
@@ -67,7 +66,7 @@ class ToursController < ApplicationController
 		
 		if !current_user
 			redirect_to new_user_session_path
-		elsif current_user.role.zero?
+		elsif current_user.admin?
 			redirect_to new_user_session_path
 		else
 			@q = Tour.ransack(params[:q])
@@ -87,7 +86,7 @@ class ToursController < ApplicationController
 		def authorize
 			if !current_user
 				redirect_to new_user_session_path
-			elsif !current_user.role.zero?
+			elsif !current_user.user?
 				redirect_to new_user_session_path
 			end
 		end

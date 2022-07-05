@@ -32,16 +32,25 @@
     </div>
     <ul class="navbar-nav navbar-right nav-link">
       <% if current_user %>
-        <% if current_user.role == 0 %>
+        <% if current_user.admin? %>
           <li>
             <%= link_to "Addtour",new_tour_path, class: "nav-link" %>
           </li>
-        <% else %>
-          <li>
-            <%= link_to "Mybooking",booktours_path, class: "nav-link" %>
-          </li>
         <% end -%>
       <% end %>
+
+      <% if current_user %>
+        <% if current_user.admin? %>
+            <li>
+              <%= link_to "Litsbooking",booktours_path, class: "nav-link" %>
+            </li>
+        <% else %>
+            <li>
+              <%= link_to "Mybooking",booktours_path, class: "nav-link" %>
+            </li>
+        <% end %>
+      <% end %>  
+
       <li class="nav-item">
         <%= link_to "Home", tours_path, class: "nav-link" %>
       </li>
@@ -54,7 +63,7 @@
             Accout
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <% if current_user.role == 0 %>
+            <% if current_user.admin? %>
                 <%= link_to "user", users_index_path, class: "dropdown-item" %>
             <% else %>
             <%= link_to "profile", users_show_path, class: "dropdown-item" %>

@@ -8,9 +8,12 @@
 <h4>Khởi hành: <%= @tour.starday.strftime("%d/%m/%Y") %></h4>
 <%= link_to "Back",tours_path, class: "btn btn-primary" %>
 <% if current_user %>
-	<% if current_user.role.zero? %>
+	<% if current_user.admin? %>
 	<%= link_to "Edit",edit_tour_path, class: "btn btn-primary" %>
 	<%= link_to "Delete",tour_path(@tour), method: :delete, class: "btn btn-primary" %>
+	<% else %>
+		<%= link_to "Book tour", booktour_tour_path(@tour.id), class: "btn btn-primary"%>
 	<% end -%>
+<% else %>
+	<%= link_to "Book tour", booktour_tour_path(@tour.id), class: "btn btn-primary"%>
 <% end %>
-<%= link_to "Book tour", booktour_tour_path(@tour.id), class: "btn btn-primary"%>
