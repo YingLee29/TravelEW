@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.1.2'
+ruby '2.7.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.6'
@@ -11,6 +11,7 @@ gem 'ransack'
 gem 'kt-paperclip', '~> 7.1', '>= 7.1.1'
 gem 'pg'
 gem "rake", "~> 13.0"
+
 # gem 'sqlite3'
 # Use sqlite3 as the database for Active Recordpf
 gem 'simple_form', '~> 5.1'
