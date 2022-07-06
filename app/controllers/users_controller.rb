@@ -12,6 +12,9 @@ class UsersController < ApplicationController
 
   def new
   end
+  def update_user
+    
+  end
 
   def destroy
     user = User.find(params[:id])

@@ -1,5 +1,7 @@
 class BooktoursController < ApplicationController
   layout 'front_end'
+  before_action :authority, only: [:update_status]
+
   def index
     @booktours = current_user.admin? ? Booktour.all : current_user.booktours
   end
@@ -15,7 +17,6 @@ class BooktoursController < ApplicationController
     @booktour.datebook = Time.zone.now
     @booktour.nuofgu = participants_num
     @booktour.totalprice = @tour.price * participants_num
-
   end
 
   def create
@@ -28,8 +29,11 @@ class BooktoursController < ApplicationController
     @booktour.totalprice = tour * @booktour.nuofgu
     redirect_to booktours_path if @booktour.save
   end
-  def update
-        
+  def update_status
+    booktour = Booktour.find(params[:id])
+    if booktour.confirmed!
+      redirect_to booktours_path
+    end
   end
   def destroy
     @booktour = Booktour.find(params[:id])
@@ -41,5 +45,13 @@ class BooktoursController < ApplicationController
   private
   def tour_params
       params.require(:booktour).permit(:nuofgu)
+  end
+  def authority
+    if !current_user
+      redirect_to booktours_path
+    elsif !current_user.admin?
+      redirect_to booktours_path
+    end
+
   end
 end

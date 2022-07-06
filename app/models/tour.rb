@@ -1,4 +1,5 @@
 class Tour < ActiveRecord::Base
+	enum status: {active: 0, inactive: 1 }
 	belongs_to :category
 	has_many :booktours
 	has_attached_file :tour_img, styles: { tour_index: "250x350>", tour_show: "325x475>" }, default_url: "/images/:style/missing.png"
