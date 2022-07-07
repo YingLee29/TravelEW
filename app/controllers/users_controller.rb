@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :check_admin, only: [:new, :destroy, :index]
   def show
      @user = current_user
-     @q = Tour.ransack(params[:q])
+     @q = Tour.ransack(params[:q]) 
   end
 
   def index

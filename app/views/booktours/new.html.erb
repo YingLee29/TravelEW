@@ -11,6 +11,6 @@
 			<h6>Ngày đặt tour: <%= @booktour.datebook.strftime("%d/%m/%Y") %> </h6>
 			<%= link_to "Back", booktour_tour_path(@tour.id), class: "btn btn-primary" %>
 			<%= link_to "confirmation tour",booktour_tour_path(request.parameters), data: {confirm: "chắc chắn bạn muộn đặt tour du lịch này? "}, method: :post, class: "btn btn-primary"%>
-		</div>
+		</div>	
 	</div>
 </div>
