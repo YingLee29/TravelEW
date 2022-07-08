@@ -1,0 +1,6 @@
+<% @reviews.each do |review| %>
+	<div>
+		<span style="color: #2980b9;"><%= review.user.name %>: </span> 
+		<%= review.comment %>
+	</div>
+<% end %>

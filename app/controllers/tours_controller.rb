@@ -9,14 +9,16 @@ class ToursController < ApplicationController
 			@tours = @tours.order("created_at DESC")
 		else
 			@tours = @tours.where(category_id: params[:category_id].to_i).order("created_at DESC")
-		end
-		
+		end	
 	end
 
 	def show
 		@tour = Tour.find(params[:id])
 		@q = Tour.ransack(params[:q])
   	@tours = @q.result
+  	@reviews = Review.where(tour_id: @tour.id)
+  	@review = Review.new
+  	
 	end
 
 	def new

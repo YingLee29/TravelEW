@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   get 'users/show'
   get 'users/new'
   get 'users/new'
@@ -19,11 +19,13 @@ Rails.application.routes.draw do
       patch :update_status
     end
   end
+  
   resources :tours do
     member do
       get :booktour
       patch :update_status
     end
+    resources :reviews
   end
   # resources :orders, only: [:create, :destroy]
   devise_for :users, controllers: {

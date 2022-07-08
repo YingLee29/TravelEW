@@ -15,6 +15,7 @@
 		<% else %>
 			<% if @tour.active? %>
 				<%= link_to "Book tour", booktour_tour_path(@tour.id), class: "btn btn-primary"%>
+				<%= link_to "Reviews", new_tour_review_path(@tour.id), class: "btn btn-primary"%>
 			<% else %>
 				<h4 style="color: red;">Tour Inactive</h4>
 			<% end %>
@@ -22,4 +23,32 @@
 	<% else %>
 		<%= link_to "Book tour", booktour_tour_path(@tour.id), class: "btn btn-primary"%>
 	<% end %>
+	<div id="reviews_section">
+		<%= render partial: 'tour_review' %>
+	</div><br>
 </div>
+<input type="text" placeholder="Your comment" class='form-control' id="text_review">
+<input type="submit" class="btn btn-primary" value="comment" id="submit_review"
+	onclick="submitReview(`<%= tour_reviews_path(tour_id: params[:id]) %>`)"
+>
+<script type="text/javascript">
+	const submitReview = (url) => {
+		$.ajax({
+			url: url,
+			dataType: 'json',
+			type: 'post',
+			data: {
+				'comment': $('#text_review').val()
+			},
+			success: function(data) {
+				console.log(data)
+				let html = data.review.map(review => {
+					user_name = data.users.filter(user => user[0] == review.user_id)[0][1]
+					return `<div><span style="color: #2980b9;">${user_name}: </span>${review.comment}</div>`
+				});
+        $('#reviews_section').html(html);
+	    }
+		});
+		$('#text_review').val('');
+	}
+</script>

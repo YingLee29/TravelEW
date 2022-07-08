@@ -11,7 +11,9 @@ class UsersController < ApplicationController
   end
 
   def new
+
   end
+
   def update_user
     
   end
