@@ -32,7 +32,9 @@ Rails.application.routes.draw do
         sessions: 'users/sessions',
         registrations: 'users/registrations',
         passwords: 'users/passwords',
-        users: '/users/show'
-      } 
+        users: '/users/show',
+        omniauth_callbacks: 'users/omniauth_callbacks'
+      }
+
 end
 # resources :booktours, only: [:new, :show, :destroy, :update]

@@ -17,6 +17,7 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
   <div class="collapse navbar-collapse nav-link" id="navbarNavDropdown">
 <!--     <div class="dropdown nav-link"  >
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories <span class="caret"></span></a>
@@ -77,9 +78,13 @@
           <%= link_to "Signup", new_user_registration_path, class: "nav-link" %>
         </li>
       <% end -%>
-
     </ul>
   </div>
+    <div> 
+      <% flash.each do |message_type, message| %>
+        <div class="input-group1"><%= message %></div>
+      <% end %>
+    </div>
   </nav>
     <div class="container">
       <%= yield %>

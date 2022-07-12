@@ -11,7 +11,12 @@ gem 'ransack'
 gem 'kt-paperclip', '~> 7.1', '>= 7.1.1'
 gem 'pg'
 gem "rake", "~> 13.0"
-
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
+gem 'google-api-client'
+gem 'figaro', '~> 1.2'
 # gem 'sqlite3'
 # Use sqlite3 as the database for Active Recordpf
 gem 'simple_form', '~> 5.1'

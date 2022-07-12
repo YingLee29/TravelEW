@@ -1,8 +1,5 @@
 class ReviewsController < ApplicationController
   def new
-    @review = Review.new
-    @q = Tour.ransack(params[:q])
-    @tours = @q.result
   end
 
   def create
@@ -13,9 +10,9 @@ class ReviewsController < ApplicationController
     @review.tour_id = tour_id
     @review.date_review = Time.zone.now
     @review.save
-    @reviews = Review.where(tour_id: tour_id)
-    @users = User.pluck(:id, :name)
-    render json: { review: @reviews, users: @users }
+    # @reviews = Review.where(tour_id: tour_id)
+    # @users = User.pluck(:id, :name)
+    render json: { review: @review, user: @review.user}
 
   end
 
@@ -29,13 +26,16 @@ class ReviewsController < ApplicationController
   end
 
   def update
+
   end
 
   def destroy
-  end
-
-  private
-    def review_params
-      params.require(:review).permit(:comment, :date_review)
+    tour = Tour.find(params[:tour_id])
+    review = tour.reviews.find(params[:id])
+    if review.destroy
+      redirect_to tour_path(review.tour)
+    else
+      redirect_to root_path
     end
+  end
 end

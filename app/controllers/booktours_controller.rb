@@ -27,7 +27,10 @@ class BooktoursController < ApplicationController
     @booktour.datebook = Time.zone.now
     @booktour.tour_id = params[:id]
     @booktour.totalprice = tour * @booktour.nuofgu
-    redirect_to booktours_path if @booktour.save
+    if @booktour.save
+      flash[:success] = "Bạn đã đặt tour thành công!"
+      redirect_to booktours_path
+    end
   end
   def update_status
     booktour = Booktour.find(params[:id])

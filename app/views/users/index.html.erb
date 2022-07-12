@@ -5,7 +5,7 @@
     <br>
    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwbGozsS9QP10p16rZiCrQD0koXVkI4c7LwUHab9dkmFRcN0VqCkB37f2y0EnySItwykg&usqp=CAU" style = "width: 50px;height: 50px;">
     <%= user.name %>
-    <%= link_to 'Delete', delete_user_path(user.id), method: :delete %>
+    <%= link_to 'Delete', delete_user_path(user.id), data: {confirm: "xóa tài khoản này?"}, method: :delete %>
   </div>
   <% end -%>
 <% end -%>
