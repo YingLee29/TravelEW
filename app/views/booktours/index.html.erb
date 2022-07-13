@@ -1,19 +1,21 @@
-
 <div class="container mx-auto mt-4">
   <div class="row">
-    <div class="col-md-4">
+    <div>
       <div class="top">
-          <% if current_user.admin? %>
-            <% @booktours.each do |booktour| %>
+        <% if current_user.admin? %>
+          <% @booktours.each do |booktour| %>
+          <div class="border-mytour">
             <h5>Tên tour: <%= booktour.tour.name %></h5>
             <h5>Khách hàng: <%= booktour.user.name%></h5>
             <h5>SĐT Khách hàng: <%= booktour.user.phone%></h5>
             <h5>Ngày đặt tour: <%= booktour.datebook.strftime("%d/%m/%Y") %> </h5>
             <h5>Giá Tiền: <%= number_to_currency(booktour.totalprice) %> </h5>
             <%= link_to booktour.status, update_status_booktour_path(booktour.id), method: :patch%>
-            <% end %>
-          <% else %>
-            <% @booktours.each do |booktour| %>
+          </div>
+          <% end %>
+        <% else %>
+          <% @booktours.each do |booktour| %>
+          <div class="border-tour">
             <h2><%= booktour.tour.name %></h2>
             <h6>Điểm đến: <%= booktour.tour.destination%></h6>
             <h6>Thời gian: <%= booktour.tour.tourday %> ngày</h6>
@@ -25,6 +27,7 @@
               <%= link_to "Canel tour",booktour_path(booktour),method: :delete, class: "btn btn-primary" %>
             <% end %>
             <h5 style="color: blue;"> <%= booktour.status %> </h5>
+          </div>
           <% end %>
         <% end %>
       </div>

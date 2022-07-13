@@ -1,11 +1,11 @@
-<div class="top4">
+<div class="top5">
 	<h1 class="current-category"><%= params[:category] %></h1>
 	<% if @tours.count == 0 %>
 			<h2>Hiện tại loại này không có Tour nào</h2>
 	<% else %>
 		<div class="row">
 			<% @tours.each do |tour| %>
-				<div class="col-md-3">
+				<div class="col-md-3 border-tour">
 					<a href="tours/tour.id"></a>
 					<%= image_tag tour.tour_img.url(:tour_index), class: "tour" %>
 					<h3 class="" ><%= link_to tour.name, tour_path(tour), class:"texts" %></h3>

@@ -24,3 +24,34 @@
 	margin-right: 500px;
 	color: blue;
 }
+#reviews_section {
+	height: 465px;
+	overflow-y: scroll;
+}
+.top {
+	margin-top: 50px;
+	font-style: normal;
+}
+.container-booktour {
+	padding: 15px 20px;
+}
+.border-tour {
+	flex: 1;
+	border: 1px solid #ccc;
+	padding: 2px;
+	margin-bottom: 30px;
+	border-radius: 4px;
+	transform: scale(0.9);
+}
+.border-mytour {
+	border: 1px solid #ccc;
+	padding: 2px;
+	margin-bottom: 30px;
+	border-radius: 4px;
+	transform: scale(0.9);
+	width: 100%;
+}
+.text-tour{
+	font-style: normal;
+	font-size: 5px;
+}

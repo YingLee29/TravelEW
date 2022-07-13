@@ -20,6 +20,7 @@ class BooktoursController < ApplicationController
   end
 
   def create
+    @user = current_user
     @booktour = Booktour.new tour_params
     @tours = Tour.all
     tour = Tour.find(params[:id])&.price
@@ -27,10 +28,15 @@ class BooktoursController < ApplicationController
     @booktour.datebook = Time.zone.now
     @booktour.tour_id = params[:id]
     @booktour.totalprice = tour * @booktour.nuofgu
-    if @booktour.save
-      flash[:success] = "Bạn đã đặt tour thành công!"
-      redirect_to booktours_path
-    end
+    respond_to do |format|
+      if @booktour.save
+        TravelMailer.travel_email(@user).deliver
+        format.html { redirect_to booktours_path }
+      else
+        format.html { render :new }
+      end
+        flash[:success] = "Bạn đã đặt tour thành công!"
+      end
   end
   def update_status
     booktour = Booktour.find(params[:id])
