@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head >
+    <link rel="shortcut icon" type="image/png" href="https://mpng.subpng.com/20181122/och/kisspng-logo-travel-agent-philippines-product-5bf7363f54fdb5.5481756715429279353481.jpg">
     <title>Travel</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
@@ -39,6 +40,9 @@
         <% if current_user.admin? %>
           <li>
             <%= link_to "Addtour",new_tour_path, class: "nav-link" %>
+          </li>
+          <li>
+            <%= link_to "Sidekiq", sidekiq_web_url, class: "nav-link" %>
           </li>
         <% end %>
       <% end %>

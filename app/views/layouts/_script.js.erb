@@ -1,11 +1,13 @@
 $(document).on("click", "#submit_review", function(e){
 	const { url }= e.currentTarget.dataset;
+	const comment = $('#text_review').val();
+	if (comment.trim().length == 0) return;
 	$.ajax({
 		url: url,
 		dataType: 'json',
 		type: 'post',
 		data: {
-			'comment': $('#text_review').val()
+			'comment': comment
 		},
 		success: function(data) {
 			console.log(data)
