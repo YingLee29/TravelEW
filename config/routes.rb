@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       patch :update_status
     end
     resources :reviews
+    resources :raters
   end
   # resources :orders, only: [:create, :destroy]
   devise_for :users, controllers: {

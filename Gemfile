@@ -20,6 +20,8 @@ gem 'figaro', '~> 1.2'
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.6'
 gem 'redis'
 gem 'sidekiq'
+gem 'ratyrate', '~> 1.2.2.alpha'
+gem 'bootstrap-datepicker-rails', '~> 1.9', '>= 1.9.0.1'
 # gem 'sqlite3'
 # Use sqlite3 as the database for Active Recordpf
 gem 'simple_form', '~> 5.1'

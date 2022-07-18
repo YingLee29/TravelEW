@@ -6,6 +6,10 @@ a {
 	background-image: url("https://c.wallhere.com/photos/1a/f8/1920x1200_px_beaches_Fiji_Hotels_huts_Islands_ocean_Palm-2063893.jpg!d");
 	background-size: cover;
 }
+.backgroudimg_tour_user {
+	background-image: url(https://www.seekpng.com/png/detail/113-1139549_hawaiian-palm-tree-hawaii-png.png);
+	background-size: cover;
+}
 .text-decto {
 	text-decoration: none !important;
 }
@@ -42,7 +46,7 @@ a {
 .container {
 	min-height: 500px;
 	.profile-img {
-		height: 300px;
+		height: 200px;
 	}
 	.profile-wrapper {
 		display: flex;

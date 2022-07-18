@@ -1,4 +1,5 @@
 class Tour < ActiveRecord::Base
+	ratyrate_rateable "name"
 	enum status: {active: 0, inactive: 1 }
 	belongs_to :category
 	has_many :booktours

@@ -42,7 +42,7 @@
             <%= link_to "Addtour",new_tour_path, class: "nav-link" %>
           </li>
           <li>
-            <%= link_to "Sidekiq", sidekiq_web_url, class: "nav-link" %>
+            <%= link_to "Sidekiq", sidekiq_web_url, target: "_blank", class: "nav-link" %>
           </li>
         <% end %>
       <% end %>
@@ -88,7 +88,7 @@
           <%= link_to "Signup", new_user_registration_path, class: "nav-link" %>
         </li>
       <% end %>
-
+      
     </ul>
       <div class="input-group">
         <div class="form-outline">

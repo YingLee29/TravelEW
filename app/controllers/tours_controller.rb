@@ -17,8 +17,8 @@ class ToursController < ApplicationController
 		@q = Tour.ransack(params[:q])
   	@tours = @q.result
   	@reviews = Review.where(tour_id: @tour.id)
-  	@review = Review.new
-  	
+  	# @review = Review.new
+  	# @rated = Rated.find_or_initialize_by(user_id: current_user.id, tour_id: params[:id])
 	end
 
 	def new

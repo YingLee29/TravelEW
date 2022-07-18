@@ -37,6 +37,7 @@ class BooktoursController < ApplicationController
       end
         flash[:success] = "Bạn đã đặt tour thành công!"
       end
+      
   end
   def update_status
     booktour = Booktour.find(params[:id])

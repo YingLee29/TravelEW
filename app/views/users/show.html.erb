@@ -1,12 +1,14 @@
-<h2 align="center">My profile</h2>
-<div class="profile-wrapper">
-  <img class="profile-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwbGozsS9QP10p16rZiCrQD0koXVkI4c7LwUHab9dkmFRcN0VqCkB37f2y0EnySItwykg&usqp=CAU">
-  <div>
-    <div>Name: <%= @user.name %></div>
-    <div>Mail: <%= @user.email %></div>
-    <div>Phone: <%= @user.phone %></div>
-    <button class='btn btn-primary'>
-      <%= link_to "Edit profile", edit_user_registration_path %>
-    </button>
+<div class="top5">
+  <h2 align="center", style="color: blue;">My profile</h2>
+  <div class="profile-wrapper border-crudtour">
+    <img class="profile-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwbGozsS9QP10p16rZiCrQD0koXVkI4c7LwUHab9dkmFRcN0VqCkB37f2y0EnySItwykg&usqp=CAU">
+    <div>
+      <div>Name: <%= @user.name %></div>
+      <div>Mail: <%= @user.email %></div>
+      <div>Phone: <%= @user.phone %></div>
+      <button class='btn btn-primary'>
+        <%= link_to "Edit profile", edit_user_registration_path %>
+      </button>
+    </div>
   </div>
 </div>

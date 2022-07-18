@@ -1,6 +1,10 @@
 <div class="top4">
-	<div class="border-tour">
-		<%= image_tag @tour.tour_img.url(:tour_show), class: "tour-show" %>
+	<div class="border-tour ">
+		<%= image_tag @tour.tour_img.url(:tour_show), class: "tour-show" %>		
+		<div >
+			<%= rating_for @tour, 'name', star: 5, enable_half: true %>
+			<%= imdb_style_rating_for @tour, current_user %>
+		</div>
 		<div class="container-booktour">
 			<div class="text-tour">
 				<h2><%= @tour.name %></h2>

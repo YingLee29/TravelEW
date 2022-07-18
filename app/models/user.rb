@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  ratyrate_rater
   has_many :booktours
   has_many :reviews
   # Include default devise modules. Others available are:
