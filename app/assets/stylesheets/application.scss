@@ -14,14 +14,15 @@
  *= require_self
  */
 @import "bootstrap";
+@import "bootstrap-datepicker";
 
 .tour {
     height: 190px;
     width: 250px;
 }
 .tour-show {
-    height: 250px;
-    width: 400px;
+    height: 280px;
+    width: 100%;
 }
 .backgroud {
   background-image: url("https://c.wallhere.com/photos/1a/f8/1920x1200_px_beaches_Fiji_Hotels_huts_Islands_ocean_Palm-2063893.jpg!d");
@@ -29,6 +30,7 @@
 }
 
 .texts {
+  
   font-size:25px;
   color: #000000;
 }

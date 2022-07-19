@@ -1,15 +1,51 @@
-<h1 class="current-category"><%= params[:category] %></h1>
-<% if @tours.count == 0 %>
-		<h2>Hiện tại loại này không có Tour nào</h2>
-<% else %>
-	<div class="row">
-		<% @tours.each do |tour| %>
-			<div class="col-md-3">
-				<a href="tours/tour.id"></a>
-				<%= image_tag tour.tour_img.url(:tour_index), class: "tour" %>
-				<h3 class="" ><%= link_to tour.name, tour_path(tour), class:"texts" %></h3>
-				<h5 class="color-text"><%= link_to number_to_currency(tour.price), tour_path(tour), class:"texts"%> VND</h5>
-			</div>
-		<%end%>
-	</div>
-<% end %>
+<div class="top5">
+	<%= search_form_for @q do |f| %>
+  <div class="input-daterange">
+    <div class="form-group">
+    	<div>
+	      <%= f.label :starday_from, 'Start date from:' %>
+      </div>
+      <div>
+	      <%= f.date_field :starday_gteq, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+    	<div>
+	      <%= f.label :starday_to, 'Start date to:' %>
+      </div>
+      <div>
+	      <%= f.date_field :starday_lteq, class: 'form-control' %>
+      </div>
+    </div>
+	  <div class="actions">
+	    <%= f.submit "filter", class: ' filter_date' %>
+	  </div>
+  </div>
+<% end %>	
+
+	<h1 class="current-category"><%= params[:category] %></h1>
+	<% if @tours.count == 0 %>
+			<h2>Hiện tại loại này không có Tour nào</h2>
+	<% else %>
+		<div class="tour-wrapper">
+			<% @tours.each do |tour| %>
+				<div class="tour-card" onclick="location.href='<%= tour_path(tour) %>'">
+						<%= image_tag tour.tour_img.url(:tour_index), class: "tour" %>
+						<div class="tour-details">
+							<h5>
+								<%= tour.name %>
+							</h5>
+							<h6 class="color-text">
+								<%= link_to number_to_currency(tour.price), tour_path(tour) %> VND
+							</h6>
+							<% if current_user&.admin? %>
+								<h4>
+									<%= link_to tour.status, update_status_tour_path(tour.id, status: 'active'), method: :patch %>
+								</h4>
+							<% end %>
+						</div>
+				</div>
+			<%end%>
+		</div>
+	<% end %>
+</div>

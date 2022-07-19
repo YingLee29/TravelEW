@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_01_074449) do
+ActiveRecord::Schema.define(version: 2022_07_15_075029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "average_caches", force: :cascade do |t|
+    t.bigint "rater_id"
+    t.string "rateable_type"
+    t.bigint "rateable_id"
+    t.float "avg", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["rateable_type", "rateable_id"], name: "index_average_caches_on_rateable"
+    t.index ["rater_id"], name: "index_average_caches_on_rater_id"
+  end
 
   create_table "booktours", force: :cascade do |t|
     t.datetime "datebook"
@@ -23,6 +34,7 @@ ActiveRecord::Schema.define(version: 2022_07_01_074449) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "status", default: 1
     t.index ["tour_id"], name: "index_booktours_on_tour_id"
     t.index ["user_id"], name: "index_booktours_on_user_id"
   end
@@ -31,6 +43,51 @@ ActiveRecord::Schema.define(version: 2022_07_01_074449) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "overall_averages", force: :cascade do |t|
+    t.string "rateable_type"
+    t.bigint "rateable_id"
+    t.float "overall_avg", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["rateable_type", "rateable_id"], name: "index_overall_averages_on_rateable"
+  end
+
+  create_table "rates", force: :cascade do |t|
+    t.bigint "rater_id"
+    t.string "rateable_type"
+    t.bigint "rateable_id"
+    t.float "stars", null: false
+    t.string "dimension"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type"
+    t.index ["rateable_type", "rateable_id"], name: "index_rates_on_rateable"
+    t.index ["rater_id"], name: "index_rates_on_rater_id"
+  end
+
+  create_table "rating_caches", force: :cascade do |t|
+    t.string "cacheable_type"
+    t.bigint "cacheable_id"
+    t.float "avg", null: false
+    t.integer "qty", null: false
+    t.string "dimension"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type"
+    t.index ["cacheable_type", "cacheable_id"], name: "index_rating_caches_on_cacheable"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "comment"
+    t.datetime "date_review"
+    t.bigint "user_id", null: false
+    t.bigint "tour_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tour_id"], name: "index_reviews_on_tour_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "tours", force: :cascade do |t|
@@ -47,6 +104,7 @@ ActiveRecord::Schema.define(version: 2022_07_01_074449) do
     t.integer "tour_img_file_size"
     t.string "tour_img_content_type"
     t.datetime "tour_img_updated_at"
+    t.integer "status", default: 1
   end
 
   create_table "users", force: :cascade do |t|
@@ -59,10 +117,15 @@ ActiveRecord::Schema.define(version: 2022_07_01_074449) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.integer "role", default: 1
+    t.string "phone"
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "booktours", "tours"
   add_foreign_key "booktours", "users"
+  add_foreign_key "reviews", "tours"
+  add_foreign_key "reviews", "users"
 end
