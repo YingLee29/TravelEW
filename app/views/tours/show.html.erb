@@ -3,7 +3,11 @@
 		<%= image_tag @tour.tour_img.url(:tour_show), class: "tour-show" %>		
 		<div >
 			<%= rating_for @tour, 'name', star: 5, enable_half: true %>
-			<%= imdb_style_rating_for @tour, current_user %>
+			<div class="rate_star">
+				<%= imdb_style_rating_for @tour, current_user %>
+				<span class='rated_point'><%= @rate_point %></span>
+			</div>
+
 		</div>
 		<div class="container-booktour">
 			<div class="text-tour">

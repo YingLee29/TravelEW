@@ -39,10 +39,12 @@ a {
 
 
 
-.mytitle {
+.mytitle  {
 	 color: #FFFFFF;
 }
-
+.btn-outline-light:hover a {
+	 color: #0b6f99;
+}
 .container {
 	min-height: 500px;
 	.profile-img {
@@ -65,4 +67,3 @@ a {
 		}
 	}
 }
-

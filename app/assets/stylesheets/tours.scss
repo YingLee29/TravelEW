@@ -62,7 +62,14 @@
 .text-tour{
 	font-style: normal;
 	font-size: 15px;
+}
+
+.text_admin:hover {
 	color: red;
+}
+.text_login {
+	color: black;
+	font-size: 1rem;
 }
 
 .star {
@@ -125,3 +132,14 @@
 	}
 }
 
+.rate_star {
+	display: inline-block;
+	position: relative;
+	.rated_point {
+		font-size: 20px;
+		position: absolute;
+		bottom: 25px;
+		left: 30px;
+		font-weight: 600;
+	}
+}

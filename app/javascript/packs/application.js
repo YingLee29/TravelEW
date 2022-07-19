@@ -13,8 +13,7 @@ import 'jquery'
 
 require ("./jquery.raty")
 require ("./ratyrate.js.erb")
-//= require jquery.raty
-//= require ratyrate
+
 Rails.start()
 ActiveStorage.start()
 

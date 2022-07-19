@@ -19,6 +19,13 @@ class ToursController < ApplicationController
   	@reviews = Review.where(tour_id: @tour.id)
   	# @review = Review.new
   	# @rated = Rated.find_or_initialize_by(user_id: current_user.id, tour_id: params[:id])
+  	rates = Rate.all.select { |rate| rate.rateable.id == @tour.id }
+  	if rates.present?
+	  	rates_stars = rates.pluck(:stars)
+	  	@rate_point = (rates_stars.sum(0.0) / rates_stars.size).round 1
+	  else
+	  	@rate_point = ""
+	  end
 	end
 
 	def new

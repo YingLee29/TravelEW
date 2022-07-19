@@ -40,7 +40,7 @@
 							</h6>
 							<% if current_user&.admin? %>
 								<h4>
-									<%= link_to tour.status, update_status_tour_path(tour.id, status: 'active'), method: :patch %>
+									<%= link_to tour.status, update_status_tour_path(tour.id, status: 'active'), method: :patch, class:'color_status' %>
 								</h4>
 							<% end %>
 						</div>

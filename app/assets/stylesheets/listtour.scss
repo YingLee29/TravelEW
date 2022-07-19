@@ -25,3 +25,17 @@
   background-color: #6f767a;
   color: white;
 }
+.color_status {
+  text-transform: capitalize;
+  color: red;
+}
+.color_status.confirmed{
+  color: green;
+  pointer-events: none;
+}
+.color_status.wait_confirmation {
+  color: red;
+  &:hover {
+    color: blue;
+  }
+}
