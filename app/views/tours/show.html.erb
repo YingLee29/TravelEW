@@ -1,9 +1,8 @@
 <div class="top4">
 	<div class="border-tour ">
-		
 		<%= image_tag "/#{@tour.tour_img_file_name}", class: "tour-show" %>
-		<div >
-			<%= rating_for @tour, 'name', star: 5, enable_half: true %>
+			<div >
+				<%= rating_for @tour, 'name', enable_half: true %>
 			<div class="rate_star">
 				<%= imdb_style_rating_for @tour, current_user %>
 				<span class='rated_point'><%= @rate_point %></span>
