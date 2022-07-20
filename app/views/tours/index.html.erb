@@ -30,7 +30,8 @@
 		<div class="tour-wrapper">
 			<% @tours.each do |tour| %>
 				<div class="tour-card" onclick="location.href='<%= tour_path(tour) %>'">
-						<%= image_tag tour.tour_img.url(:tour_index), class: "tour" %>
+						<%# image_tag tour.tour_img.url(:tour_index), class: "tour" %>
+						<%= image_tag "/#{tour.tour_img_file_name}", class: "tour" %>
 						<div class="tour-details">
 							<h5>
 								<%= tour.name %>
