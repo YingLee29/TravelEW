@@ -2,7 +2,7 @@
 	<div class="border-tour ">
 		<%= image_tag "/#{@tour.tour_img_file_name}", class: "tour-show" %>
 			<div >
-				<%= rating_for @tour, 'name', enable_half: true %>
+				<%= rating_for @tour, 'name', star_path: '/' %>
 			<div class="rate_star">
 				<%= imdb_style_rating_for @tour, current_user %>
 				<span class='rated_point'><%= @rate_point %></span>
@@ -22,7 +22,7 @@
 				<% if current_user %>
 					<% if current_user.admin? %>
 						<%= link_to "Edit",edit_tour_path, class: "btn btn-primary" %>
-						<%= link_to "Delete",tour_path(@tour), method: :delete, class: "btn btn-primary" %>
+						<%= link_to "Delete",tour_path(@tour), data: {confirm: "xóa tour này? "}, method: :delete, class: "btn btn-primary" %>
 					<% else %>
 						<% if @tour.active? %>
 							<%= link_to "Book tour", booktour_tour_path(@tour.id), class: "btn btn-primary"%>
