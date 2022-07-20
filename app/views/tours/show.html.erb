@@ -4,7 +4,7 @@
 			<div >
 				<%= rating_for @tour, 'name', star_path: '/' %>
 			<div class="rate_star">
-				<%= imdb_style_rating_for @tour, current_user %>
+				<%= imdb_style_rating_for @tour, star_path: '/' %>
 				<span class='rated_point'><%= @rate_point %></span>
 			</div>
 

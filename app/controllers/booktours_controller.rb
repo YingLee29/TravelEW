@@ -36,8 +36,7 @@ class BooktoursController < ApplicationController
         format.html { render :new }
       end
         flash[:success] = "Bạn đã đặt tour thành công!"
-      end
-      
+      end  
   end
   def update_status
     booktour = Booktour.find(params[:id])
@@ -48,7 +47,7 @@ class BooktoursController < ApplicationController
   def destroy
     @booktour = Booktour.find(params[:id])
     @booktour.destroy
-
+    flash[:success] = "Tour đã được hủy!"
     redirect_to booktours_path
   end
   

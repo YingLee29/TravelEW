@@ -25,7 +25,7 @@
           <% Category.all.each  do |category| %>
           <li class="<%= 'active' if params[:category] == category.name %>">
             <%= link_to category.name, tours_path(category: category.name), class: "link"  %>
-          </li> 
+          </li>
           <% end %>
       </ul>
       
@@ -85,7 +85,7 @@
   </div>
     <div> 
       <% flash.each do |message_type, message| %>
-        <div class="input-group1"><%= message %></div>
+        <div class="input-group1" style="background-color: #d1e7dd; "><%= message %></div>
       <% end %>
     </div>
   </nav>

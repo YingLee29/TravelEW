@@ -91,8 +91,8 @@
           </td>
           <% if !booktour.confirmed?%>
             <td>
-              <%= link_to "Canel tour",booktour_path(booktour),method: :delete%>
-              </td>
+              <%= link_to "Canel tour",booktour_path(booktour), :data => {:confirm => 'Hủy tour này?'}, method: :delete%>
+            </td>
           <%else%>
             <td>
               Not canel tour

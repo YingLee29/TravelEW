@@ -41,10 +41,12 @@ class ToursController < ApplicationController
 		@tour = Tour.new(tour_params)
 		@tour.category_id = params[:category_id]
 		if @tour.save
+			# flash[:success] = "Tạo tour thành công!"
 			redirect_to tours_path
 		else
 			render 'new'
 		end
+		
 	end
 
 	def edit
@@ -58,6 +60,7 @@ class ToursController < ApplicationController
   	@tours = @q.result
 		@categories = Category.all.map{ |c| [c.name, c.id]}
 		if @tour.update(tour_params)
+			# flash[:success] = "Update tour thành công!"
 			redirect_to tour_path(@tour)	
 		else
 			render 'edit'
