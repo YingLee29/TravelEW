@@ -1,6 +1,7 @@
 <div class="top4">
 	<div class="border-tour ">
-		<%= image_tag @tour.tour_img.url(:tour_show), class: "tour-show" %>		
+		
+		<%= image_tag "/#{@tour.tour_img_file_name}", class: "tour-show" %>
 		<div >
 			<%= rating_for @tour, 'name', star: 5, enable_half: true %>
 			<div class="rate_star">
