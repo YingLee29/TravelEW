@@ -1,20 +1,108 @@
-
-<div class="container mx-auto mt-4">
-  <div class="row">
-    <div class="col-md-4">
-    	<div class="top"> 
-				<% @booktours.each do |booktour| %>
-					<h2><%= booktour.tour.name %></h2>
-					<h6>Điểm đến: <%= booktour.tour.destination%></h6>
-					<h6>Thời gian: <%= booktour.tour.tourday %> ngày</h6>
-					<h6>Khởi hành vào ngày: <%= booktour.tour.starday.strftime("%d/%m/%Y") %></h6>
-					<h6>Số thành viên: <%= booktour.nuofgu %> người </h6>
-					<h6>Tổng tiền phải thanh toán: <%= number_to_currency(booktour.totalprice) %> VND </h6>
-					<h6>Ngày đặt tour <%= booktour.datebook.strftime("%d/%m/%Y") %> </h6>
-					
-					<%= link_to "Canel tour",booktour_path(booktour),method: :delete, class: "btn btn-primary" %>
-				<% end %>
-			</div>
-		</div>
-	</div>
-</div>
+<table class="customers">
+  <div class="top5">
+    <% if current_user.admin? %>
+        <tr>
+          <th>Tên tour</th>
+          <th>Khách hàng</th>
+          <th>Điện Thoại</th>
+          <th>Ngày đặt tour</th>
+          <th>Giá Tiền</th>
+          <th>Trạng Thái</th>
+        </tr>
+      <% @booktours.each do |booktour| %>
+        <tr>
+          <td>
+            <%= booktour.tour.name %>
+          </td>
+          <td>
+            <%= booktour.user.name%>
+          </td>
+          <td>
+            <%= booktour.user.phone%>
+          </td>
+          <td>
+            <%= booktour.datebook.strftime("%d/%m/%Y") %>
+          </td>
+          <td>
+            <%= number_to_currency(booktour.totalprice) %>
+          </td>
+          <td>
+            <%= link_to booktour.status.gsub('_', ' '),
+              update_status_booktour_path(booktour.id),
+              method: :patch,
+              class:"color_status #{booktour.status}",
+              data: { confirm: "Are you sure?" }
+            %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+        <tr>
+          <th>
+            Tên tour
+          </th>
+          <th>
+            Điểm đến
+          </th>
+          <th>
+            Thời gian
+          </th>
+          <th>
+            Khởi hành vào ngày
+          </th>
+          <th>
+            Số thành viên
+          </th>
+          <th>
+            Ngày đặt tour
+          </th>
+          <th>
+            Tổng tiền
+          </th>
+          <th>
+            Hủy Tour
+          </th>
+          <th>
+            Trạng Thái
+          </th>
+        </tr>
+      <% @booktours.each do |booktour| %>
+        <tr>
+          <td>
+            <%= booktour.tour.name %>
+          </td>
+          <td>
+            <%= booktour.tour.destination%>  
+          </td>
+          <td>
+            <%= booktour.tour.tourday %>ngày
+          </td>
+          <td>
+            <%= booktour.tour.starday.strftime("%d/%m/%Y") %>
+          </td>
+          <td>
+            <%= booktour.nuofgu %>
+          </td>
+          <td>
+            <%= booktour.datebook.strftime("%d/%m/%Y") %> 
+          </td>
+          <td>
+            <%= number_to_currency(booktour.totalprice) %> VND
+          </td>
+          <% if !booktour.confirmed?%>
+            <td>
+              <%= link_to "Canel tour",booktour_path(booktour), :data => {:confirm => 'Hủy tour này?'}, method: :delete%>
+            </td>
+          <%else%>
+            <td>
+              Not canel tour
+            </td>
+          <% end %>
+          <td style="color: blue;">
+            <%= booktour.status %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </div>
+</table>

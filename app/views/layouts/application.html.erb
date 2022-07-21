@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head >
+    <link rel="shortcut icon" type="image/png" href="https://mpng.subpng.com/20181122/och/kisspng-logo-travel-agent-philippines-product-5bf7363f54fdb5.5481756715429279353481.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Travel</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
@@ -11,37 +13,53 @@
   </head>
 
   <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+    <%= javascript_tag do %>
+      <%= render 'layouts/script.js.erb' %>
+    <% end %>
+  <nav class="navbar navbar-expand-lg headerfix navbar-light bg-light justify-content-between">
   <%= link_to "Travel", root_path, class: "navbar-brand" %>
     
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <div class="nav-item dropdown" >
+    <ul class="navbar-nav navbar-right nav-link">
+      <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">Category</a>
-      <ul class="dropdown-menu" role="menu">
-          <% Category.all.each do |category| %>
-          <li class="<%= 'active' if params[:category] == category.name %>">
-            <%= link_to category.name, tours_path(category: category.name), class: "link"  %>
-          </li> 
-          <% end %>
-      </ul>
+        <ul class="dropdown-menu" role="menu" >
+            <% Category.all.each do |category| %>
+            <li class="<%= 'active' if params[:category] == category.name %>">
+              <%= link_to category.name, tours_path(category_id: category.id), class: "dropdown-item"  %>
+            </li> 
+            <% end %>
+        </ul>
+      </li>
+    </ul>
 
-    </div>
     <ul class="navbar-nav navbar-right nav-link">
       <% if current_user %>
-        <% if current_user.role == 0 %>
+        <% if current_user.admin? %>
           <li>
             <%= link_to "Addtour",new_tour_path, class: "nav-link" %>
           </li>
-        <% else %>
           <li>
-            <%= link_to "Mybooking",booktours_path, class: "nav-link" %>
+            <%= link_to "Sidekiq", sidekiq_web_url, target: "_blank", class: "nav-link" %>
           </li>
-        <% end -%>
+        <% end %>
       <% end %>
+
+      <% if current_user %>
+        <% if current_user.admin? %>
+            <li>
+              <%= link_to "Litsbooking",booktours_path, class: "nav-link" %>
+            </li>
+        <% else %>
+            <li>
+              <%= link_to "Mybooking",booktours_path, class: "nav-link" %>
+            </li>
+        <% end %>
+      <% end %>  
+
       <li class="nav-item">
         <%= link_to "Home", tours_path, class: "nav-link" %>
       </li>
@@ -54,7 +72,7 @@
             Accout
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <% if current_user.role == 0 %>
+            <% if current_user.admin? %>
                 <%= link_to "user", users_index_path, class: "dropdown-item" %>
             <% else %>
             <%= link_to "profile", users_show_path, class: "dropdown-item" %>
@@ -70,8 +88,7 @@
         <li class="nav-item">
           <%= link_to "Signup", new_user_registration_path, class: "nav-link" %>
         </li>
-      <% end %>
-
+      <% end %> 
     </ul>
       <div class="input-group">
         <div class="form-outline">
@@ -86,5 +103,6 @@
     <div class="container">
       <%= yield %>
     </div>
+          <%= render 'layouts/footer' %>
   </body>
 </html>

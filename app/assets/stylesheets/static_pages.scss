@@ -3,14 +3,67 @@ a {
 }
 
 .backgroudimg {
-  background-image: url("https://c.wallhere.com/photos/1a/f8/1920x1200_px_beaches_Fiji_Hotels_huts_Islands_ocean_Palm-2063893.jpg!d");
-  background-size: cover;
+	background-image: url("https://c.wallhere.com/photos/1a/f8/1920x1200_px_beaches_Fiji_Hotels_huts_Islands_ocean_Palm-2063893.jpg!d");
+	background-size: cover;
+}
+.backgroudimg_tour_user {
+	background-image: url(https://www.seekpng.com/png/detail/113-1139549_hawaiian-palm-tree-hawaii-png.png);
+	background-size: cover;
+}
+.text-decto {
+	text-decoration: none !important;
 }
 .top1 {
-  margin-top: 100px;
-  font-style: normal;
+	margin-top: px;
+	font-style: normal;
 
 }
-.mytitle {
-   color: #FFFFFF;
+.top2 {
+	margin: 15rem;
+}
+.top3 {
+	margin-button: 15rem;
+}
+.top4 {
+	margin-top: 3rem;
+	display: flex;
+	gap: 80px;
+}
+.top5 {
+	margin-top: 5rem;
+	font-style: normal
+}
+.top6 {
+	margin-top: 11rem;
+}
+
+
+
+.mytitle  {
+	 color: #FFFFFF;
+}
+.btn-outline-light:hover a {
+	 color: #0b6f99;
+}
+.container {
+	min-height: 500px;
+	.profile-img {
+		height: 200px;
+	}
+	.profile-wrapper {
+		display: flex;
+		justify-content: center;
+		& > div {
+			flex: 1;
+			padding: 30px;
+			div {
+				margin-bottom: 5px;
+				font-size: 20px;
+			}
+			a {
+				color: white;
+				font-weight: 600;
+			}
+		}
+	}
 }

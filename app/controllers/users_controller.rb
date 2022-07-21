@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :check_admin, only: [:new, :destroy, :index]
   def show
      @user = current_user
-     @q = Tour.ransack(params[:q])
+     @q = Tour.ransack(params[:q]) 
   end
 
   def index
@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   end
 
   def new
+
   end
 
   def destroy
@@ -25,7 +26,7 @@ class UsersController < ApplicationController
   private
 
   def check_admin
-    if !current_user.role.zero?
+    if current_user.user?
       redirect_to root_path
     end
   end

@@ -18,3 +18,128 @@
 	font-style: normal;
 	color: #0000;
 }
+
+.input-group1 {
+	justify-content: flex-end;
+	margin-right: 500px;
+	color: blue;
+}
+#reviews_section {
+	height: 465px;
+	overflow-y: scroll;
+}
+.top {
+	margin-top: 50px;
+	font-style: normal;
+}
+.container-booktour {
+	padding: 15px 20px;
+}
+.border-tour {
+	flex: 1;
+	border: 1px solid #ccc;
+	padding: 2px;
+	margin-bottom: 30px;
+	border-radius: 4px;
+	transform: scale(0.9);
+}
+.border-mytour {
+	border: 1px solid #ccc;
+	padding: 2px;
+	margin-bottom: 30px;
+	border-radius: 4px;
+	transform: scale(0.9);
+	width: 100%;
+}
+.border-crudtour {
+	border: 5px solid #ccc;
+	padding: 30px;
+	margin-bottom: 30px;
+	border-radius: 10px;
+	transform: scale(0.9);
+	width: 100%;
+}
+.text-tour{
+	font-style: normal;
+	font-size: 15px;
+}
+
+.text_admin:hover {
+	color: red;
+}
+.text_login {
+	color: black;
+	font-size: 1rem;
+}
+
+.star {
+	img {
+		width: 30px;
+	}
+}
+.input-daterange {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	gap: 15px;
+	width: 50%;
+	label {
+		white-space: nowrap;
+	}
+	& > div {
+		flex: 5;
+	}
+	.actions {
+		flex: 1;
+		align-self: flex-end;
+	}
+}
+.filter_date {
+  color: black;
+  border-radius: 4px;
+  border: black;
+  background: #e3e4e6;
+  border: 1px solid black;
+  width: 50px;
+  height: 38px;
+}
+.tour-wrapper {
+	display: flex;
+	flex-flow: wrap;
+	gap: 35px;
+	justify-content: center;
+	margin: 30px 0;
+	.tour-card {
+		display: inline-block;
+		box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+		border-radius: 4px;
+		box-sizing: border-box;
+		height: 330px;
+		width: 250px;
+		cursor: pointer;
+		transition: .3s;
+		&:hover {
+			transform: scale(1.1);
+		}
+		img {
+			height: 60%;
+			object-fit: cover;
+			border-radius: 4px 4px 0 0;
+		}
+		.tour-details {
+			padding: 10px;
+		}
+	}
+}
+
+.rate_star {
+	display: inline-block;
+	position: relative;
+	.rated_point {
+		font-size: 20px;
+		position: absolute;
+		bottom: 25px;
+		left: 30px;
+		font-weight: 600;
+	}
+}

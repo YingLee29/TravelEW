@@ -1,8 +1,8 @@
 class StaticPagesController < ApplicationController
   def index
-      @tours = Tour.all
-      @booktours = Booktour.where(user_id: current_user.id).booktour("created_at DESC")
-      @booktour = Booktour.new
+    @tours = Tour.all
+    @booktours = Booktour.where(user_id: current_user.id).booktour("created_at DESC")
+    @booktour = Booktour.new
   end
 
   def home
