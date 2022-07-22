@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  layout 'front_end'
+  layout 'front_end', only: [:index]
   before_action :check_admin, only: [:new, :destroy, :index]
   def show
      @user = current_user
