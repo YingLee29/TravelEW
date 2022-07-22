@@ -30,7 +30,7 @@ class BooktoursController < ApplicationController
     @booktour.totalprice = tour * @booktour.nuofgu
     respond_to do |format|
       if @booktour.save
-        TravelMailer.travel_email(@user).deliver_now
+        TravelMailer.travel_email(@user).deliver_later
         format.html { redirect_to booktours_path }
       else
         format.html { render :new }
