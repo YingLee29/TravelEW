@@ -84,7 +84,7 @@
   </div>
     <div> 
       <% flash.each do |message_type, message| %>
-        <div class="input-group1" style="background-color: #d1e7dd; "><%= message %></div>
+        <div class="input-group1 alert-<%= message_type %>"><%= message %></div>
       <% end %>
     </div>
   </nav>

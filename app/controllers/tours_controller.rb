@@ -29,7 +29,6 @@ class ToursController < ApplicationController
 	def new
 		@q = Tour.ransack(params[:q])
   	@tours = @q.result
-  	binding.pry
 		@tour = Tour.new
 		@categories = Category.all.map{ |c| [c.name, c.id]}
 	end

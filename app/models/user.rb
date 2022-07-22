@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   ratyrate_rater
   has_many :booktours
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
