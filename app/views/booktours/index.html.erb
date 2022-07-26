@@ -42,9 +42,6 @@
             Tên tour
           </th>
           <th>
-            Điểm đến
-          </th>
-          <th>
             Thời gian
           </th>
           <th>
@@ -72,9 +69,6 @@
             <%= booktour.tour.name %>
           </td>
           <td>
-            <%= booktour.tour.destination%>  
-          </td>
-          <td>
             <%= booktour.tour.tourday %>ngày
           </td>
           <td>
@@ -91,11 +85,11 @@
           </td>
           <% if !booktour.confirmed?%>
             <td>
-              <%= link_to "Canel tour",booktour_path(booktour), :data => {:confirm => 'Hủy tour này?'}, method: :delete%>
+              <%= link_to "Hủy",booktour_path(booktour), :data => {:confirm => 'Hủy tour này?'}, method: :delete%>
             </td>
           <%else%>
             <td>
-              Not canel tour
+              Không thể hủy
             </td>
           <% end %>
           <td style="color: blue;">

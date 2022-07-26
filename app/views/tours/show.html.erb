@@ -18,20 +18,20 @@
 				<h4>Giá tour: <%=number_to_currency(@tour.price) %>VND/1 người</h4>
 				<h4>Khởi hành: <%= @tour.starday.strftime("%d/%m/%Y") %></h4>
 			</div>
-				<%= link_to "Back",tours_path, class: "btn btn-primary" %>
+				<%= link_to "Trở về",tours_path, class: "btn btn-primary" %>
 				<% if current_user %>
 					<% if current_user.admin? %>
-						<%= link_to "Edit",edit_tour_path, class: "btn btn-primary" %>
-						<%= link_to "Delete",tour_path(@tour), data: {confirm: "xóa tour này? "}, method: :delete, class: "btn btn-primary" %>
+						<%= link_to "Sửa",edit_tour_path, class: "btn btn-primary" %>
+						<%= link_to "Xóa",tour_path(@tour), data: {confirm: "xóa tour này? "}, method: :delete, class: "btn btn-primary" %>
 					<% else %>
 						<% if @tour.active? %>
-							<%= link_to "Book tour", booktour_tour_path(@tour.id), class: "btn btn-primary"%>
+							<%= link_to "Đặt tour", booktour_tour_path(@tour.id), class: "btn btn-primary"%>
 						<% else %>
-							<h4 style="color: red;">Tour Inactive</h4>
+							<h4 style="color: red;">Tour Không hoạt động</h4>
 						<% end %>
 					<% end %>
 				<% else %>
-					<%= link_to "Book tour", booktour_tour_path(@tour.id), class: "btn btn-primary"%>
+					<%= link_to "Đặt tour", booktour_tour_path(@tour.id), class: "btn btn-primary"%>
 				<% end %>
 		</div>
 	</div>
@@ -40,11 +40,19 @@
 			<%= render partial: 'tour_review' %>
 		</div>
 		<% if current_user %>
-			<input type="text" placeholder="Your comment..." class='form-control' id="text_review">
-			<input type="submit" class="btn btn-primary" value="comment" id="submit_review"
+			<input type="text" placeholder="Viết bình luận..." class='form-control' id="text_review">
+			<input type="submit" class="btn btn-primary" value="Bình Luận" id="submit_review"
 				data-url="<%= tour_reviews_path(tour_id: params[:id]) %>">
 		<% else %>
-				<h3 style="color: red;"> Login to comment on this tour </h3><br>
+				<h3 style="color: red;">Đăng nhập để bình luận </h3><br>
 		<% end %>
 	</div>
+</div>	
+<div>
+	<h2 align="center">
+		<u>
+			<b>Chi Tiết</b>
+		</u>
+	</h2>
+	<%= @tour.description %>
 </div>

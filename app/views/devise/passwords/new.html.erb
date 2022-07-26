@@ -3,8 +3,8 @@
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="card shadow-2-strong" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
-            <h2>Forgot your password?</h2>
+          <div class="card-body p-5">
+            <h2 align="center">Quên Mật Khẩu</h2>
 
             <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
               <%= render "devise/shared/error_messages", resource: resource %>
@@ -15,7 +15,7 @@
               </div>
 
               <div class="actions mb-5">
-                <%= f.submit "Send me reset password instructions" %>
+                <%= f.submit "Gửi cho tôi hướng dẫn" %>
               </div>
             <% end %>
 

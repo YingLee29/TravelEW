@@ -3,7 +3,7 @@
   <div class="input-daterange">
     <div class="form-group">
     	<div>
-	      <%= f.label :starday_from, 'Start date from:' %>
+	      <%= f.label :starday_from, 'Từ ngày:' %>
       </div>
       <div>
 	      <%= f.date_field :starday_gteq, class: 'form-control' %>
@@ -11,14 +11,14 @@
     </div>
     <div class="form-group">
     	<div>
-	      <%= f.label :starday_to, 'Start date to:' %>
+	      <%= f.label :starday_to, 'Đến ngày:' %>
       </div>
       <div>
 	      <%= f.date_field :starday_lteq, class: 'form-control' %>
       </div>
     </div>
 	  <div class="actions">
-	    <%= f.submit "filter", class: ' filter_date' %>
+	    <%= f.submit "Lọc", class: ' filter_date' %>
 	  </div>
   </div>
 <% end %>	
@@ -30,7 +30,6 @@
 		<div class="tour-wrapper">
 			<% @tours.each do |tour| %>
 				<div class="tour-card" onclick="location.href='<%= tour_path(tour) %>'">
-						<%# image_tag tour.tour_img.url(:tour_index), class: "tour" %>
 						<%= image_tag "/#{tour.tour_img_file_name}", class: "tour" %>
 						<div class="tour-details">
 							<h5>
@@ -41,7 +40,7 @@
 							</h6>
 							<% if current_user&.admin? %>
 								<h4>
-									<%= link_to tour.status, update_status_tour_path(tour.id, status: 'active'), method: :patch, class:'color_status' %>
+									<%= link_to tour.status, update_status_tour_path(tour.id, status: 'Tour Mở'), method: :patch, class:'color_status' %>
 								</h4>
 							<% end %>
 						</div>
