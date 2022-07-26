@@ -28,7 +28,6 @@
           </li>
           <% end %>
       </ul>
-      
     </div> -->
     <ul class="navbar-nav navbar-right  ">
       <% if current_user %>
@@ -85,12 +84,18 @@
   </div>
     <div> 
       <% flash.each do |message_type, message| %>
-        <div class="input-group1" style="background-color: #d1e7dd; "><%= message %></div>
+        <div class="input-group1 alert-<%= message_type %>"><%= message %></div>
       <% end %>
     </div>
   </nav>
-    <div class="container">
       <%= yield %>
-    </div>
+      <script type="text/javascript">
+        let path = location.href.split("/").at(-1);
+        if (path == 'sign_up' || path == 'sign_in') {
+          $("nav").css('display', 'none');
+          $(".login_section").css('transform', 'scale(.9)');
+          $('.backgroudimg').removeClass('top');
+        }
+      </script>
   </body>
 </html>

@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
   mount Sidekiq::Web => "/sidekiq"
+  root "static_pages#home"
+
   get 'users/show'
   get 'users/new'
   get 'users/new'
@@ -8,7 +10,6 @@ Rails.application.routes.draw do
 
   delete 'users/:id/destroy', to: 'users#destroy', as: 'delete_user'
   # resources :users
-  root "static_pages#home"
   get 'booktours/show'
   #post 'booktours/new'
   # get 'tours/new'

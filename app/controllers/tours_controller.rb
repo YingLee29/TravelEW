@@ -13,12 +13,10 @@ class ToursController < ApplicationController
 	end
 
 	def show
-		@tour = Tour.find(params[:id])
 		@q = Tour.ransack(params[:q])
   	@tours = @q.result
+		@tour = Tour.find(params[:id])
   	@reviews = Review.where(tour_id: @tour.id)
-  	# @review = Review.new
-  	# @rated = Rated.find_or_initialize_by(user_id: current_user.id, tour_id: params[:id])
   	rates = Rate.all.select { |rate| rate.rateable.id == @tour.id }
   	if rates.present?
 	  	rates_stars = rates.pluck(:stars)
@@ -41,7 +39,6 @@ class ToursController < ApplicationController
 		@tour = Tour.new(tour_params)
 		@tour.category_id = params[:category_id]
 		if @tour.save
-			# flash[:success] = "Tạo tour thành công!"
 			redirect_to tours_path
 		else
 			render 'new'

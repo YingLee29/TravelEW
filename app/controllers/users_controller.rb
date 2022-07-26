@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  layout 'front_end', only: [:index]
   before_action :check_admin, only: [:new, :destroy, :index]
   def show
      @user = current_user
@@ -16,6 +17,15 @@ class UsersController < ApplicationController
 
   def destroy
     user = User.find(params[:id])
+    #check user co booktour nao k
+    if user.booktours.present?
+    #co: flash tb loi, return
+      flash[:danger] = "Không thể xóa tài khoản đang đặt tour!"
+      redirect_to users_index_path
+      return
+
+    end
+    #ko: tiep tuc
     if user.destroy
       redirect_to users_index_path
     else

@@ -10,10 +10,7 @@ class ReviewsController < ApplicationController
     @review.tour_id = tour_id
     @review.date_review = Time.zone.now
     @review.save
-    # @reviews = Review.where(tour_id: tour_id)
-    # @users = User.pluck(:id, :name)
     render json: { review: @review, user: @review.user}
-
   end
 
   def show

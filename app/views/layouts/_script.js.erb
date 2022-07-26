@@ -1,5 +1,4 @@
-$(document).on("click", "#submit_review", function(e){
-	const { url }= e.currentTarget.dataset;
+const sendReview = (url) => {
 	const comment = $('#text_review').val();
 	if (comment.trim().length == 0) return;
 	$.ajax({
@@ -16,4 +15,16 @@ $(document).on("click", "#submit_review", function(e){
 				$('#text_review').val('');
     	}
 	});
-})
+}
+
+$(document).on("click", "#submit_review", function(e){
+	const { url } = e.currentTarget.dataset;
+	sendReview(url);
+});
+$(document).on("keypress", "#text_review", function(e){
+	let url = `${location.href}/reviews`;
+	let isPressEnter = e.keyCode == 13;
+	if (isPressEnter) {
+		sendReview(url);
+	}
+});
