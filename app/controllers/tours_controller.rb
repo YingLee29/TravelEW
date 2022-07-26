@@ -80,7 +80,6 @@ class ToursController < ApplicationController
 	end
 
 	def booktour
-		
 		if !current_user
 			redirect_to new_user_session_path
 		elsif current_user.admin?
@@ -94,7 +93,7 @@ class ToursController < ApplicationController
 	private
 
 		def tour_params
-			params.require(:tour).permit(:name, :destination, :tourday, :price, :starday, :rated, :category_id, :tour_img)
+			params.require(:tour).permit(:name, :destination, :tourday, :price, :starday, :rated, :category_id, :tour_img, :description)
 		end
 		def find_tour
 			@tour = Tour.find(params[:id])

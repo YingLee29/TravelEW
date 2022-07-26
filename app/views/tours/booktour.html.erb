@@ -1,5 +1,5 @@
 <div class="top5">
-		<h1 align="center", style="color:black; ">Book Tour</h1>
+		<h1 align="center", style="color:black; ">Đặt Tour</h1>
 		<div class="border-crudtour">
 			<h2><%= @tour.name %></h2>
 			<h4>Loại tour: <%= @tour.category.name%></h4>
@@ -23,8 +23,8 @@
 					<%= f.label :tổng_giá_tiền %>
 					<%= f.text_field :totalprice, value: 0, class: 'form-control', disabled: true %>
 				</div>
-				<%= link_to "Back",tours_path, class: "btn btn-primary" %>
-				<%= f.submit "Next", class: 'btn btn-primary' %>
+				<%= link_to "Trở về",tours_path, class: "btn btn-primary" %>
+				<%= f.submit "Tiếp", class: 'btn btn-primary' %>
 			<% end %>
 
 			<script type="text/javascript">

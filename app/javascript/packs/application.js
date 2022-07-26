@@ -25,3 +25,5 @@ $(document).on('ready', function() {
     format: "dd-mm-yyyy"
   });
 });
+require("trix")
+require("@rails/actiontext")
