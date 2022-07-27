@@ -16,7 +16,7 @@ class ToursController < ApplicationController
 		@q = Tour.ransack(params[:q])
   	@tours = @q.result
 		@tour = Tour.find(params[:id])
-  	@reviews = Review.where(tour_id: @tour.id)
+  	@reviews = Review.where(tour_id: @tour.id).order("created_at DESC")
   	rates = Rate.all.select { |rate| rate.rateable.id == @tour.id }
   	if rates.present?
 	  	rates_stars = rates.pluck(:stars)

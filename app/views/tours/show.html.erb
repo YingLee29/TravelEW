@@ -35,17 +35,18 @@
 				<% end %>
 		</div>
 	</div>
-	<div style="flex: 1; margin-top: 2em; display: flex; flex-flow: column; gap: 15px">
+	<div class="reviews_section_wrapper">
+		<% if current_user %>
+			<div class="comment_input_field">
+				<input type="text" placeholder="Viết bình luận..." class='form-control' id="text_review">
+				<input type="submit" class="btn btn-primary " value="Bình Luận" id="submit_review" data-url="<%= tour_reviews_path(tour_id: params[:id]) %>">
+			</div>
+		<% else %>
+			<h3 style="color: red;">Đăng nhập để bình luận </h3><br>
+		<% end %>
 		<div id="reviews_section">
 			<%= render partial: 'tour_review' %>
 		</div>
-		<% if current_user %>
-			<input type="text" placeholder="Viết bình luận..." class='form-control' id="text_review">
-			<input type="submit" class="btn btn-primary" value="Bình Luận" id="submit_review"
-				data-url="<%= tour_reviews_path(tour_id: params[:id]) %>">
-		<% else %>
-				<h3 style="color: red;">Đăng nhập để bình luận </h3><br>
-		<% end %>
 	</div>
 </div>	
 <div>

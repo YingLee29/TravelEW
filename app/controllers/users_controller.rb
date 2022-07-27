@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   layout 'front_end', only: [:index]
   before_action :check_admin, only: [:new, :destroy, :index]
-  def show
+  def profile
      @user = current_user
      @q = Tour.ransack(params[:q]) 
   end
@@ -30,6 +30,14 @@ class UsersController < ApplicationController
       redirect_to users_index_path
     else
       redirect_to root_path
+    end
+  end
+
+  def get_user_modal
+    @user = User.find params[:id]
+    
+    respond_to do |format|
+      format.js
     end
   end
 

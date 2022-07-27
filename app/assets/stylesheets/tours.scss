@@ -143,3 +143,14 @@
 		font-weight: 600;
 	}
 }
+.reviews_section_wrapper {
+	flex: 1;
+	margin-top: 2em;
+	display: flex;
+	flex-flow: column;
+	gap: 15px;
+	.comment_input_field {
+		display: flex;
+		gap: 10px;
+	}
+}

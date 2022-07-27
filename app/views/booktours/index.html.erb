@@ -27,11 +27,11 @@
             <%= number_to_currency(booktour.totalprice) %>
           </td>
           <td>
-            <%= link_to booktour.status.gsub('_', ' '),
+            <%= link_to booktour.status_i18n,
               update_status_booktour_path(booktour.id),
               method: :patch,
               class:"color_status #{booktour.status}",
-              data: { confirm: "Are you sure?" }
+              data: { confirm: "Xác nhận đặt tour" }
             %>
           </td>
         </tr>
@@ -92,9 +92,15 @@
               Không thể hủy
             </td>
           <% end %>
-          <td style="color: blue;">
-            <%= booktour.status %>
-          </td>
+          <% if booktour.confirmed? %>
+            <td style="color: green;">
+              <%= booktour.status_i18n %>
+            </td>
+          <% else %>
+            <td style="color: red;">
+              <%= booktour.status_i18n %>
+            </td>
+          <% end -%>
         </tr>
       <% end %>
     <% end %>

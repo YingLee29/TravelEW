@@ -7,9 +7,11 @@
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
+import Swal from 'sweetalert2'
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import 'jquery'
+import 'packs/sweet'
 
 require ("./jquery.raty")
 require ("./ratyrate.js.erb")

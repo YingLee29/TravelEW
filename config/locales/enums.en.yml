@@ -1,0 +1,10 @@
+en:
+  enums:
+    booktour:
+      status:
+        wait_confirmation: 'Chưa xác nhận'
+        confirmed: 'Đã xác nhận'
+    tour:
+      status:
+        active: 'Tour mở'
+        inactive: 'Tour đóng'

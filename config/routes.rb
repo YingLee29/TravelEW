@@ -3,10 +3,12 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => "/sidekiq"
   root "static_pages#home"
 
-  get 'users/show'
-  get 'users/new'
-  get 'users/new'
+  # get 'users/show'
+  # get 'users/new'
+  # get 'users/new'
   get 'users/index'
+  get 'users/profile'
+  get 'users/:id/get_user_modal', to: 'users#get_user_modal', as: 'get_user_modal'
 
   delete 'users/:id/destroy', to: 'users#destroy', as: 'delete_user'
   # resources :users

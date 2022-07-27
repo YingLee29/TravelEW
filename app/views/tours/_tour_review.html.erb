@@ -1,10 +1,10 @@
 <% @reviews.each do |review| %>
-	<div>
+	<div id='reviewid-<%= review.id %>'>
 		<span style="color: #2980b9;"><%= review.user.name %>: </span> 
 		<%= review.comment %><br>
 		<% if current_user%>
 			<% if current_user.admin?%>
-				<%= link_to 'Xóa', tour_review_path(id: review.id, tour_id: review.tour), data: {confirm: "xóa bình luận này?"}, method: :delete, class:"text_admin" %>
+				<%= link_to 'Xóa', '#', data: {url: tour_review_path(id: review.id, tour_id: review.tour), review_id: review.id}, class: "sweet-delete-comment" %>
 			<% end -%>
 		<% end -%>
 	</div>
