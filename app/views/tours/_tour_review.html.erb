@@ -1,11 +1,16 @@
 <% @reviews.each do |review| %>
-	<div id='reviewid-<%= review.id %>'>
-		<span style="color: #2980b9;"><%= review.user.name %>: </span> 
-		<%= review.comment %><br>
+	<div class="review-item" id='reviewid-<%= review.id %>'>
 		<% if current_user%>
 			<% if current_user.admin?%>
-				<%= link_to 'Xóa', '#', data: {url: tour_review_path(id: review.id, tour_id: review.tour), review_id: review.id}, class: "sweet-delete-comment" %>
+				<a
+					data-url="<%= tour_review_path(id: review.id, tour_id: review.tour) %>" data-review-id="<%= review.id %>"
+					class="sweet-delete-comment"
+				>
+					<i class="fa fa-times" aria-hidden="true" style="opacity: 0.4"></i>
+				</a>
 			<% end -%>
 		<% end -%>
+		<span style="color: #2980b9;"><%= review.user.name %>: </span> 
+		<%= review.comment %>
 	</div>
 <% end %>
