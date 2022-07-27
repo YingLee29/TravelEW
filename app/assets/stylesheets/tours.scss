@@ -154,3 +154,18 @@
 		gap: 10px;
 	}
 }
+
+.review-item {
+	position: relative;
+	padding-left: 20px;
+	.sweet-delete-comment {
+		display: none;
+		position: absolute;
+		left: 0;
+		cursor: pointer;
+	}
+	&:hover .sweet-delete-comment {
+		display: block;
+	}
+}
+

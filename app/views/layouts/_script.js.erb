@@ -9,10 +9,22 @@ const sendReview = (url) => {
 			'comment': comment
 		},
 		success: function(data) {
-			console.log(data)
-			let html = `<div><span style="color: #2980b9;">${data.user.name}: </span>${data.review.comment}</div>`
-	   		$('#reviews_section').prepend(html);
-				$('#text_review').val('');
+			console.log(data);
+			const isAdmin = data.user.role == "admin";
+   		let reviewNode = isAdmin ?
+   			`<div class="review-item" id='reviewid-${data.review.id}'>
+   			<a
+					data-url="/tours/${data.review.tour_id}/reviews/${data.review.id}"
+					data-review-id="${data.review.id}"
+					class="sweet-delete-comment"
+				>
+					<i class="fa fa-times" aria-hidden="true" style="opacity: 0.4"></i>
+				</a>
+				<span style="color: #2980b9;">${data.user.name}: </span>${data.review.comment}</div>`
+			: `<div class="review-item" id='reviewid-${data.review.id}'>
+				<span style="color: #2980b9;">${data.user.name}: </span>${data.review.comment}</div>`
+   		$('#reviews_section').prepend(reviewNode);
+			$('#text_review').val('');
     	}
 	});
 }
