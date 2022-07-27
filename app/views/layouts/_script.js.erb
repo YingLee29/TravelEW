@@ -11,7 +11,7 @@ const sendReview = (url) => {
 		success: function(data) {
 			console.log(data)
 			let html = `<div><span style="color: #2980b9;">${data.user.name}: </span>${data.review.comment}</div>`
-	   		$('#reviews_section').append(html);
+	   		$('#reviews_section').prepend(html);
 				$('#text_review').val('');
     	}
 	});
@@ -26,5 +26,10 @@ $(document).on("keypress", "#text_review", function(e){
 	let isPressEnter = e.keyCode == 13;
 	if (isPressEnter) {
 		sendReview(url);
+		const commentBox = document.getElementById('reviews_section');
+		// scrollToBottom(commentBox);
 	}
 });
+function scrollToBottom(node) {
+	node.scrollTop = node.scrollHeight;
+}

@@ -75,7 +75,7 @@
             <% if current_user.admin? %>
                 <%= link_to "user", users_index_path, class: "dropdown-item" %>
             <% else %>
-            <%= link_to "profile", users_show_path, class: "dropdown-item" %>
+            <%= link_to "profile", users_profile_path, class: "dropdown-item" %>
             <% end %>
             <%= link_to "setting", '#', class: "dropdown-item" %>
           </div>
