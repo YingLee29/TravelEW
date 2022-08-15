@@ -9,7 +9,7 @@ class ToursController < ApplicationController
 			@tours = @tours.order("created_at DESC")
 		else
 			@tours = @tours.where(category_id: params[:category_id].to_i).order("created_at DESC")
-		end	
+		end
 	end
 
 	def show
@@ -17,13 +17,14 @@ class ToursController < ApplicationController
   	@tours = @q.result
 		@tour = Tour.find(params[:id])
   	@reviews = Review.where(tour_id: @tour.id).order("created_at DESC")
-  	rates = Rate.all.select { |rate| rate.rateable.id == @tour.id }
+  	rates = Rate.all.select { |rate| rate.rateable == @tour }
   	if rates.present?
 	  	rates_stars = rates.pluck(:stars)
 	  	@rate_point = (rates_stars.sum(0.0) / rates_stars.size).round 1
 	  else
 	  	@rate_point = ""
 	  end
+	  binding.pry
 	end
 
 	def new
@@ -75,8 +76,13 @@ class ToursController < ApplicationController
 	def destroy
 		@q = Tour.ransack(params[:q])
   	@tours = @q.result
-		@tour.destroy
-		redirect_to root_path
+  	tour = Tour.find(params[:id])
+		 if tour.booktours.present?
+    #co: flash tb loi, return
+      flash[:danger] = "Không thể xóa tour đang được đặt!"
+      redirect_to root_path
+      return
+    end
 	end
 
 	def booktour
