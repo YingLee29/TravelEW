@@ -1,6 +1,6 @@
 <div class="top4">
 	<div class="border-tour ">
-		<%= image_tag "/#{@tour.tour_img_file_name}", class: "tour-show" %>
+		<%= image_tag "#{@tour.tour_img_file_name}", class: "tour-show" %>
 			<div >
 				<%= rating_for @tour, 'name', star_path: '/' %>
 			<div class="rate_star">
