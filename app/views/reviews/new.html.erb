@@ -1,0 +1,5 @@
+<h1>Reviews</h1>
+	<%= form_for @review, url: tour_reviews_path(params[:tour_id]), method: :post do |f| %>
+		<%= f.text_field :comment, label: "Your comment:", class: 'form-control' %>
+		<%= f.submit "save comment", class: "btn btn-primary"%>
+	<% end %>

@@ -17,6 +17,7 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
   <div class="collapse navbar-collapse nav-link" id="navbarNavDropdown">
 <!--     <div class="dropdown nav-link"  >
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories <span class="caret"></span></a>
@@ -31,16 +32,27 @@
     </div> -->
     <ul class="navbar-nav navbar-right  ">
       <% if current_user %>
-        <% if current_user.role == 0 %>
+        <% if current_user.admin? %>
           <li>
             <%= link_to "Addtour",new_tour_path, class: "nav-link" %>
           </li>
-        <% else %>
           <li>
-            <%= link_to "Mybooking",booktours_path, class: "nav-link" %>
+            <%= link_to "Sidekiq", sidekiq_web_url, class: "nav-link" %>
           </li>
         <% end -%>
       <% end %>
+      
+      <% if current_user %>
+        <% if current_user.admin? %>
+            <li>
+              <%= link_to "Litsbooking",booktours_path, class: "nav-link" %>
+            </li>
+        <% else %>
+            <li>
+              <%= link_to "Mybooking",booktours_path, class: "nav-link" %>
+            </li>
+        <% end %>
+      <% end %> 
       <li class="nav-item">
         <%= link_to "Home", tours_path, class: "nav-link" %>
       </li>
@@ -53,7 +65,7 @@
             Accout
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <% if current_user.role == 0 %>
+            <% if current_user.admin? %>
                 <%= link_to "user", users_index_path, class: "dropdown-item" %>
             <% else %>
             <%= link_to "profile", users_show_path, class: "dropdown-item" %>
@@ -69,9 +81,13 @@
           <%= link_to "Signup", new_user_registration_path, class: "nav-link" %>
         </li>
       <% end -%>
-
     </ul>
   </div>
+    <div> 
+      <% flash.each do |message_type, message| %>
+        <div class="input-group1"><%= message %></div>
+      <% end %>
+    </div>
   </nav>
     <div class="container">
       <%= yield %>

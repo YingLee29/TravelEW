@@ -3,33 +3,34 @@ class ToursController < ApplicationController
 	before_action :find_tour, only: [:show, :edit, :update, :destroy]
 
 	def index
-		if params[:category].blank?
-			@tours = Tour.all.order("created_at DESC")
+		@q = Tour.ransack(params[:q])
+		@tours = @q.result
+		if params[:category_id].nil?
+			@tours = @tours.order("created_at DESC")
 		else
-			@category_id = Category.find_by(name: params[:category]).id
-			@tours = Tour.where(:category_id => @category_id).order("created_at DESC")
-		end
-			@q = Tour.ransack(params[:q])
-  		@tours = @q.result
+			@tours = @tours.where(category_id: params[:category_id].to_i).order("created_at DESC")
+		end	
 	end
-
 
 	def show
 		@tour = Tour.find(params[:id])
 		@q = Tour.ransack(params[:q])
-  		@tours = @q.result
+  	@tours = @q.result
+  	@reviews = Review.where(tour_id: @tour.id)
+  	# @review = Review.new
+  	# @rated = Rated.find_or_initialize_by(user_id: current_user.id, tour_id: params[:id])
 	end
 
 	def new
 		@q = Tour.ransack(params[:q])
-  		@tours = @q.result
+  	@tours = @q.result
 		@tour = Tour.new
 		@categories = Category.all.map{ |c| [c.name, c.id]}
 	end
 
 	def create
 		@q = Tour.ransack(params[:q])
-  		@tours = @q.result
+  	@tours = @q.result
 		@tour = Tour.new(tour_params)
 		@tour.category_id = params[:category_id]
 		if @tour.save
@@ -41,13 +42,13 @@ class ToursController < ApplicationController
 
 	def edit
 		@q = Tour.ransack(params[:q])
-  		@tours = @q.result
+  	@tours = @q.result
 		@categories = Category.all.map{ |c| [c.name, c.id]}
 	end
 
 	def update
 		@q = Tour.ransack(params[:q])
-  		@tours = @q.result
+  	@tours = @q.result
 		@categories = Category.all.map{ |c| [c.name, c.id]}
 		if @tour.update(tour_params)
 			redirect_to tour_path(@tour)	
@@ -56,9 +57,17 @@ class ToursController < ApplicationController
 		end
 	end
 
+  def update_status
+    tour = Tour.find(params[:id])
+    tour.status = tour.active? ? 'inactive' : 'active'
+    if tour.save
+    	redirect_to tours_path
+    end
+  end
+
 	def destroy
 		@q = Tour.ransack(params[:q])
-  		@tours = @q.result
+  	@tours = @q.result
 		@tour.destroy
 		redirect_to root_path
 	end
@@ -67,7 +76,7 @@ class ToursController < ApplicationController
 		
 		if !current_user
 			redirect_to new_user_session_path
-		elsif current_user.role.zero?
+		elsif current_user.admin?
 			redirect_to new_user_session_path
 		else
 			@q = Tour.ransack(params[:q])
@@ -87,7 +96,7 @@ class ToursController < ApplicationController
 		def authorize
 			if !current_user
 				redirect_to new_user_session_path
-			elsif !current_user.role.zero?
+			elsif !current_user.admin?
 				redirect_to new_user_session_path
 			end
 		end

@@ -1,6 +1,6 @@
-<div class="container mx-auto mt-4">
-  <div class="row">
-    <div class="col-md-4">
+<div class="top5">
+	<h1 align="center", style="color:blue; ">Book Tour Confirm</h1>
+	<div class="border-crudtour">
 			<h1 class="top">booktour here</h1>
 			<h2><%= @tour.name %></h2>
 			<h6>Điểm đến: <%= @tour.destination%></h6>
@@ -9,8 +9,7 @@
 			<h6>Số thành viên: <%= @booktour.nuofgu %> người </h6>
 			<h6>Tổng tiền phải thanh toán: <%= number_to_currency(@booktour.totalprice) %> VND </h6>
 			<h6>Ngày đặt tour: <%= @booktour.datebook.strftime("%d/%m/%Y") %> </h6>
-			<%= link_to "Back", tours_path, class: "btn btn-primary" %>
+			<%= link_to "Back", booktour_tour_path(@tour.id), class: "btn btn-primary" %>
 			<%= link_to "confirmation tour",booktour_tour_path(request.parameters), data: {confirm: "chắc chắn bạn muộn đặt tour du lịch này? "}, method: :post, class: "btn btn-primary"%>
-		</div>
-	</div>
+	</div>	
 </div>
