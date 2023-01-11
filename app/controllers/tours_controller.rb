@@ -9,13 +9,12 @@ class ToursController < ApplicationController
 			@tours = @tours.order("created_at DESC")
 		else
 			@tours = @tours.where(category_id: params[:category_id].to_i).order("created_at DESC")
-		end	
+		end
 	end
 
 	def show
 		@q = Tour.ransack(params[:q])
   	@tours = @q.result
-		@tour = Tour.find(params[:id])
   	@reviews = Review.where(tour_id: @tour.id).order("created_at DESC")
   	rates = Rate.all.select { |rate| rate.rateable == @tour }
   	if rates.present?
@@ -65,7 +64,6 @@ class ToursController < ApplicationController
 	end
 
   def update_status
-    tour = Tour.find(params[:id])
     tour.status = tour.active? ? 'inactive' : 'active'
     if tour.save
     	redirect_to tours_path
@@ -95,9 +93,15 @@ class ToursController < ApplicationController
 		def tour_params
 			params.require(:tour).permit(:name, :destination, :tourday, :price, :starday, :rated, :category_id, :tour_img, :description)
 		end
+
 		def find_tour
 			@tour = Tour.find(params[:id])
 		end
+
+		def tour
+			@tour ||= Tour.find(params[:id])
+		end
+
 
 		def authorize
 			if !current_user
