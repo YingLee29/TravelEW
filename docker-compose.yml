@@ -1,0 +1,28 @@
+version: "3"
+services:
+  db:
+    image: postgres:14.1
+    environment:
+      POSTGRES_PASSWORD: password
+    volumes:
+      - db_data:/data/postgres
+    command: postgres -c stats_temp_directory=/tmp
+  api:
+    build: .
+    tty: true
+    stdin_open: true
+    ports:
+      - "3001:3000"
+    volumes:
+      - ".:/TravelEW"
+      - bundle:/usr/local/bundle
+      - rails_cache:/TravelEW/tmp/cache
+    depends_on:
+      - db
+    command: bash -c "bundle install && rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
+volumes:
+  bundle:
+    driver: local
+  db_data:
+    driver: local
+  rails_cache:
